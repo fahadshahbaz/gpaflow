@@ -222,16 +222,9 @@ export function StatsCards({
 								<button
 									type="button"
 									onClick={() => setIsEditing(true)}
-									disabled={isMaxReached}
-									className={`icon-skeuo-raised h-8 w-8 rounded-full border border-slate-200/80 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.04)] flex items-center justify-center transition-all ${
-										isMaxReached
-											? "opacity-40 text-slate-400 pointer-events-none"
-											: "hover:scale-[1.03] active:scale-[0.97] text-slate-500 hover:text-slate-700"
-									}`}
-									aria-label={
-										isMaxReached ? "Degree completed" : "Edit target GPA"
-									}
-									title={isMaxReached ? "Degree completed" : "Edit target GPA"}
+									className="icon-skeuo-raised h-8 w-8 rounded-full border border-slate-200/80 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.04)] flex items-center justify-center transition-all hover:scale-[1.03] active:scale-[0.97] text-slate-500 hover:text-slate-700"
+									aria-label="Edit target GPA"
+									title="Edit target GPA"
 								>
 									<Pencil className="h-4 w-4" />
 								</button>
