@@ -206,10 +206,16 @@ export function StatsCards({
 									className={`px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-normal border shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1.5px_3px_rgba(0,0,0,0.03)] ${
 										isTargetMet
 											? "bg-emerald-50/80 border-emerald-200/50 text-emerald-600"
-											: "bg-amber-50/80 border-amber-200/50 text-amber-600"
+											: isMaxReached
+												? "bg-slate-100 border-slate-200/80 text-slate-600"
+												: "bg-amber-50/80 border-amber-200/50 text-amber-600"
 									}`}
 								>
-									{isTargetMet ? "Achieved" : "In Progress"}
+									{isTargetMet
+										? "Achieved"
+										: isMaxReached
+											? "Completed"
+											: "In Progress"}
 								</span>
 							)}
 							{!isEditing && (
@@ -277,12 +283,24 @@ export function StatsCards({
 								{targetGpa.toFixed(2)}
 							</span>
 							<div className="mt-4 flex items-center gap-4">
-								{!isTargetMet && semesterCount > 0 && (
+								{semesterCount > 0 && (
 									<p className="text-sm text-slate-500 font-normal">
-										<span className="font-normal text-primary">
-											{(targetGpa - cgpa).toFixed(2)}
-										</span>{" "}
-										points needed
+										{isTargetMet ? (
+											<span className="text-emerald-600 font-normal">
+												Target achieved
+											</span>
+										) : isMaxReached ? (
+											<span className="text-slate-500 font-normal">
+												Degree completed · Final CGPA {cgpa.toFixed(2)}
+											</span>
+										) : (
+											<>
+												<span className="font-normal text-primary">
+													{(targetGpa - cgpa).toFixed(2)}
+												</span>{" "}
+												points needed
+											</>
+										)}
 									</p>
 								)}
 							</div>

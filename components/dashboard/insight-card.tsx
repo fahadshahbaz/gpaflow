@@ -95,6 +95,17 @@ function generateInsight(
 		};
 	}
 
+	if (semesters.length >= 8) {
+		return {
+			percentage: "8/8",
+			title: "Degree Complete",
+			description: `Congratulations! You've completed your degree with a final CGPA of ${cgpa.toFixed(2)}.`,
+			gradient: "from-blue-600 via-indigo-600 to-violet-700",
+			quote: randomQuote,
+			tip: "Congratulations on your graduation and completing your academic journey!",
+		};
+	}
+
 	// Compare last two semesters
 	const lastSemester = semesters[semesters.length - 1];
 	const prevSemester = semesters[semesters.length - 2];
