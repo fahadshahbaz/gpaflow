@@ -94,7 +94,7 @@ export function StatsCards({
 							<span className="text-5xl font-light text-slate-800 tracking-tight leading-none">
 								{cgpa.toFixed(2)}
 							</span>
-							{gpaChange !== null && (
+							{gpaChange !== null && !isMaxReached && (
 								<div
 									className={`flex items-center gap-1 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-normal border shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1.5px_3px_rgba(0,0,0,0.03)] mb-0.5 ${
 										gpaChange >= 0
