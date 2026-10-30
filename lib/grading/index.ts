@@ -1,6 +1,3 @@
-// Grading Engine Factory
-// Provides a unified interface to access grading functions based on university
-
 import type { GradingEngine, UniversitySlug } from "@/types/grading";
 import * as gcufEngine from "./gcuf";
 import * as gcwufEngine from "./gcwuf";
@@ -26,9 +23,24 @@ export function getUniversityGradingEngine(
 			return gcufEngine.engEngine;
 		default:
 			return {
-				calculateGradePoint: (marks: number) =>
-					numlEngine.calculateGradePoint(marks),
-				getLetterGrade: (marks: number) => numlEngine.getLetterGrade(marks),
+				calculateGradePoint: (
+					marks: number,
+					_creditHours?: number,
+					totalMarks?: number,
+				) => {
+					const percentage =
+						totalMarks && totalMarks > 0 ? (marks / totalMarks) * 100 : marks;
+					return numlEngine.calculateGradePoint(percentage);
+				},
+				getLetterGrade: (
+					marks: number,
+					_creditHours?: number,
+					totalMarks?: number,
+				) => {
+					const percentage =
+						totalMarks && totalMarks > 0 ? (marks / totalMarks) * 100 : marks;
+					return numlEngine.getLetterGrade(percentage);
+				},
 				calculateSGPA: numlEngine.calculateSGPA,
 				calculateCGPA: numlEngine.calculateCGPA,
 			};

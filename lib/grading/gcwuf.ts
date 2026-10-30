@@ -1,7 +1,3 @@
-// GCWUF Grading Engine - Quality Points Table System
-// Strategy: Quality Points (QP) Lookup Table
-// Formula: GPA = Sum(Quality Points) / Sum(Credit Hours)
-
 import type { GradeResult, LetterGrade } from "@/types/grading";
 
 const CREDIT_HOUR_CAPS: Record<number, number> = {

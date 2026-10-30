@@ -1,6 +1,3 @@
-// NUML Grading Engine - Examination Rules 2023
-// Based on fipnizen grading: 73=3.29, 74=3.39, 75=3.50
-
 import type { GradeResult, LetterGrade } from "@/types/grading";
 
 export function roundMarks(marks: number): number {
@@ -10,17 +7,14 @@ export function roundMarks(marks: number): number {
 export function calculateGradePoint(rawMarks: number): number {
 	const marks = roundMarks(rawMarks);
 
-	// Formula: base GP + (marks - threshold) * 0.10 - 0.01 (for partial marks)
-	// Examples: 73 = 3.0 + 3*0.10 - 0.01 = 3.29, 74 = 3.39, 75 = 3.50
-	if (marks >= 85) return 4.0; // A+
-	if (marks >= 80) return 4.0 - (85 - marks) * 0.01; // A (3.95-3.99 for 80-84)
-	if (marks >= 75) return 3.5 + (marks - 75) * 0.1 - (marks > 75 ? 0.01 : 0); // B+
-	if (marks >= 70) return 3.0 + (marks - 70) * 0.1 - (marks > 70 ? 0.01 : 0); // B
-	if (marks >= 65) return 2.5 + (marks - 65) * 0.1 - (marks > 65 ? 0.01 : 0); // C+
-	if (marks >= 60) return 2.0 + (marks - 60) * 0.1 - (marks > 60 ? 0.01 : 0); // C
-	if (marks >= 55) return 1.5 + (marks - 55) * 0.1 - (marks > 55 ? 0.01 : 0); // D+
-	if (marks >= 50) return 1.0 + (marks - 50) * 0.1 - (marks > 50 ? 0.01 : 0); // D
-	return 0.0; // F
+	if (marks >= 80) return 4.0;
+	if (marks >= 75) return Math.round((3.5 + (marks - 75) * 0.1) * 100) / 100;
+	if (marks >= 70) return Math.round((3.0 + (marks - 70) * 0.1) * 100) / 100;
+	if (marks >= 65) return Math.round((2.5 + (marks - 65) * 0.1) * 100) / 100;
+	if (marks >= 60) return Math.round((2.0 + (marks - 60) * 0.1) * 100) / 100;
+	if (marks >= 55) return Math.round((1.5 + (marks - 55) * 0.1) * 100) / 100;
+	if (marks >= 50) return Math.round((1.0 + (marks - 50) * 0.1) * 100) / 100;
+	return 0.0;
 }
 
 // Round to 2 decimal places for display
@@ -31,7 +25,7 @@ export function formatGradePoint(gp: number): number {
 export function getLetterGrade(rawMarks: number): LetterGrade {
 	const marks = roundMarks(rawMarks);
 
-	if (marks >= 85) return "A+";
+	if (marks >= 90) return "A+";
 	if (marks >= 80) return "A";
 	if (marks >= 75) return "B+";
 	if (marks >= 70) return "B";

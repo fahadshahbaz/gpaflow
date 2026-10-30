@@ -1,7 +1,3 @@
-// GCUF Grading Engine - Government College University Faisalabad
-// Formula: GPA = Sum(Quality Points) / Sum(Credit Hours)
-// QP = Grade Point (GP) * Credit Hours (CH)
-
 import type { LetterGrade } from "@/types/grading";
 
 // Official GCUF Percentage to Grade Point (GP) Mapping (from Table 20.6.2)
