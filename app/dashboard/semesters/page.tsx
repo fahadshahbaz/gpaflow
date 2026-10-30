@@ -17,7 +17,7 @@ export default async function SemestersPage() {
 		(user.user_metadata?.university as UniversitySlug) || "numl";
 
 	return (
-		<div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-8">
+		<div className="max-w-400 mx-auto px-4 sm:px-6 py-8">
 			{/* Page Header */}
 			<div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
 				<div>
