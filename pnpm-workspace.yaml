@@ -1,3 +1,6 @@
+# Wait 7 days (10,080 minutes) before allowing new package releases (supply-chain attack protection)
+minimumReleaseAge: 10080
+
 allowBuilds:
   msw: true
   sharp: true
