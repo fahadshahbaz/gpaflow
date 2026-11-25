@@ -91,16 +91,8 @@ export interface Semester {
 }
 
 export interface GradingEngine {
-	calculateGradePoint(
-		marks: number,
-		creditHours: number,
-		totalMarks?: number,
-	): number;
-	getLetterGrade(
-		marks: number,
-		creditHours: number,
-		totalMarks?: number,
-	): LetterGrade | string;
+	calculateGradePoint(marks: number, creditHours: number, totalMarks?: number): number;
+	getLetterGrade(marks: number, creditHours: number, totalMarks?: number): LetterGrade | string;
 	calculateSGPA(
 		subjects: Array<{
 			obtained_marks: number;
@@ -109,9 +101,7 @@ export interface GradingEngine {
 			grade_point?: number;
 		}>,
 	): number;
-	calculateCGPA(
-		semesters: Array<{ sgpa: number; totalCreditHours: number }>,
-	): number;
+	calculateCGPA(semesters: Array<{ sgpa: number; totalCreditHours: number }>): number;
 }
 
 export interface DashboardStats {

@@ -1,14 +1,6 @@
 "use client";
 
-import {
-	BookOpen,
-	ChevronDown,
-	LayoutDashboard,
-	LogOut,
-	Menu,
-	Settings,
-	X,
-} from "lucide-react";
+import { BookOpen, ChevronDown, LayoutDashboard, LogOut, Menu, Settings, X } from "lucide-react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -108,9 +100,7 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 		if (!container || !pillRef.current) return;
 
 		const updatePill = (immediate = false) => {
-			const activeTab = container.querySelector<HTMLElement>(
-				'[aria-selected="true"]',
-			);
+			const activeTab = container.querySelector<HTMLElement>('[aria-selected="true"]');
 			if (!activeTab || !pillRef.current) return;
 
 			if (immediate) {
@@ -137,9 +127,7 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 	useEffect(() => {
 		const container = tabsRef.current;
 		if (!container || !pillRef.current) return;
-		const activeTab = container.querySelector<HTMLElement>(
-			'[aria-selected="true"]',
-		);
+		const activeTab = container.querySelector<HTMLElement>('[aria-selected="true"]');
 		if (!activeTab) return;
 
 		pillRef.current.style.transform = `translateX(${activeTab.offsetLeft}px)`;
@@ -158,7 +146,7 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 				top: "calc(1rem + var(--banner-offset, 0px))",
 			}}
 		>
-			<header className="max-w-400 mx-auto w-full relative">
+			<header className="relative mx-auto w-full max-w-400">
 				<div
 					ref={mobileMenuRef}
 					className={cn(
@@ -170,20 +158,20 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 					data-open={isMobileOpen}
 				>
 					{/* Top Row: Logo & Mobile Trigger always visible on mobile, Full Row on Desktop */}
-					<div className="h-15 flex items-center justify-between shrink-0 w-full px-4 md:px-0">
+					<div className="flex h-15 w-full shrink-0 items-center justify-between px-4 md:px-0">
 						{/* Logo */}
 						<Logo size="sm" href="/dashboard" />
 
 						{/* Right Section - Grouped Navigation & Profile */}
-						<div className="hidden md:flex items-center gap-4">
+						<div className="hidden items-center gap-4 md:flex">
 							{/* Desktop Navigation */}
 							<nav
 								ref={tabsRef}
-								className="t-tabs flex items-center gap-1.5 transition-all duration-500 ease-out rounded-full p-1 bg-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_2px_8px_rgba(0,0,0,0.03)]"
+								className="t-tabs flex items-center gap-1.5 rounded-full bg-slate-100 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_2px_8px_rgba(0,0,0,0.03)] transition-all duration-500 ease-out"
 							>
 								<span
 									ref={pillRef}
-									className="t-tabs-pill bg-white rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.04),inset_0_1px_0_#ffffff]"
+									className="t-tabs-pill rounded-full bg-white shadow-[0_2px_4px_rgba(0,0,0,0.04),inset_0_1px_0_#ffffff]"
 									aria-hidden="true"
 								/>
 								{navItems.map((item) => {
@@ -197,9 +185,7 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 											aria-selected={isActive}
 											className={cn(
 												"t-tab flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-normal",
-												isActive
-													? "text-slate-800"
-													: "text-slate-500 hover:text-slate-800",
+												isActive ? "text-slate-800" : "text-slate-500 hover:text-slate-800",
 											)}
 										>
 											{item.title}
@@ -209,15 +195,15 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 							</nav>
 
 							{/* Profile Dropdown Container */}
-							<div className="flex items-center transition-all duration-500 ease-out rounded-full p-1 h-12 bg-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_2px_8px_rgba(0,0,0,0.03)]">
+							<div className="flex h-12 items-center rounded-full bg-slate-100 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_2px_8px_rgba(0,0,0,0.03)] transition-all duration-500 ease-out">
 								<div className="relative" ref={dropdownRef}>
 									<button
 										type="button"
 										onClick={toggleDropdown}
-										className="flex items-center gap-2 rounded-full pl-1 pr-3 h-10 bg-white shadow-[0_2px_4px_rgba(0,0,0,0.04),inset_0_1px_0_#ffffff] transition-[transform] duration-200 ease-out active:scale-[0.97] cursor-pointer"
+										className="flex h-10 cursor-pointer items-center gap-2 rounded-full bg-white pr-3 pl-1 shadow-[0_2px_4px_rgba(0,0,0,0.04),inset_0_1px_0_#ffffff] transition-[transform] duration-200 ease-out active:scale-[0.97]"
 									>
-										<div className="h-8 w-8 rounded-full bg-gradient-to-b from-blue-400 to-blue-600 flex items-center justify-center shadow-[0_2px_4px_rgba(37,99,235,0.1)] flex-shrink-0 overflow-hidden">
-											<span className="text-xs font-bold text-white tracking-wide">
+										<div className="flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-b from-blue-400 to-blue-600 shadow-[0_2px_4px_rgba(37,99,235,0.1)]">
+											<span className="text-xs font-bold tracking-wide text-white">
 												{userName?.charAt(0).toUpperCase() ||
 													userEmail?.charAt(0).toUpperCase() ||
 													"U"}
@@ -240,27 +226,27 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 												isDropdownClosing && "is-closing",
 											)}
 										>
-											<div className="px-4.5 py-4 border-b border-slate-100 bg-slate-50/40">
-												<p className="text-sm font-extrabold text-slate-800 leading-tight">
+											<div className="border-b border-slate-100 bg-slate-50/40 px-4.5 py-4">
+												<p className="text-sm leading-tight font-extrabold text-slate-800">
 													{userName || "User"}
 												</p>
 											</div>
-											<div className="p-1.5 space-y-0.5">
+											<div className="space-y-0.5 p-1.5">
 												<Link
 													href="/dashboard/settings"
 													prefetch={true}
 													onClick={closeDropdown}
-													className="group flex items-center gap-3 px-3.5 py-2.5 text-sm font-normal text-slate-600 hover:text-slate-800 hover:bg-slate-50 rounded-xl transition-colors duration-200 ease-out"
+													className="group flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-normal text-slate-600 transition-colors duration-200 ease-out hover:bg-slate-50 hover:text-slate-800"
 												>
-													<Settings className="h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-colors" />
+													<Settings className="h-4 w-4 text-slate-400 transition-colors group-hover:text-slate-600" />
 													Settings
 												</Link>
 												<form action={signOut}>
 													<button
 														type="submit"
-														className="group flex w-[calc(100%-1px)] items-center gap-3 px-3.5 py-2.5 text-sm font-normal text-rose-500 hover:text-rose-600 hover:bg-rose-50/50 rounded-xl transition-colors duration-200 ease-out cursor-pointer"
+														className="group flex w-[calc(100%-1px)] cursor-pointer items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-normal text-rose-500 transition-colors duration-200 ease-out hover:bg-rose-50/50 hover:text-rose-600"
 													>
-														<LogOut className="h-4 w-4 text-rose-450 group-hover:text-rose-600 transition-colors" />
+														<LogOut className="text-rose-450 h-4 w-4 transition-colors group-hover:text-rose-600" />
 														Sign Out
 													</button>
 												</form>
@@ -271,27 +257,27 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 							</div>
 						</div>
 
-						<div className="md:hidden flex items-center">
+						<div className="flex items-center md:hidden">
 							<button
 								type="button"
 								onClick={() => setIsMobileOpen(!isMobileOpen)}
-								className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-650 hover:text-slate-900 hover:bg-slate-100/50 transition-all duration-200 active:scale-90 cursor-pointer"
+								className="text-slate-650 flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl transition-all duration-200 hover:bg-slate-100/50 hover:text-slate-900 active:scale-90"
 								aria-expanded={isMobileOpen}
 								aria-label="Toggle navigation menu"
 							>
 								{isMobileOpen ? (
-									<X className="h-5 w-5 animate-in fade-in zoom-in-75 duration-150" />
+									<X className="animate-in fade-in zoom-in-75 h-5 w-5 duration-150" />
 								) : (
-									<Menu className="h-5 w-5 animate-in fade-in zoom-in-75 duration-150" />
+									<Menu className="animate-in fade-in zoom-in-75 h-5 w-5 duration-150" />
 								)}
 							</button>
 						</div>
 					</div>
 
 					{/* Mobile Menu Drawer (Inline Accordion Expansion) */}
-					<div className="t-acc-panel md:hidden w-full">
+					<div className="t-acc-panel w-full md:hidden">
 						<div className="t-acc-panel-inner w-full">
-							<div className="px-4 pb-4.5 border-t border-slate-100/90 mt-1.5 pt-3.5 flex flex-col gap-1.5">
+							<div className="mt-1.5 flex flex-col gap-1.5 border-t border-slate-100/90 px-4 pt-3.5 pb-4.5">
 								{navItems.map((item) => {
 									const isActive = pathname === item.href;
 									return (
@@ -317,14 +303,14 @@ export function TopNav({ userName, userEmail }: TopNavProps) {
 										</Link>
 									);
 								})}
-								<div className="border-t border-slate-100 mt-2.5 pt-2.5">
+								<div className="mt-2.5 border-t border-slate-100 pt-2.5">
 									<form action={signOut}>
 										<button
 											type="submit"
 											onClick={() => setIsMobileOpen(false)}
-											className="group flex w-full items-center gap-3 px-3.5 py-2.5 text-sm font-normal text-rose-500 hover:text-rose-600 hover:bg-rose-50/50 rounded-xl transition-colors duration-200 ease-out cursor-pointer"
+											className="group flex w-full cursor-pointer items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-normal text-rose-500 transition-colors duration-200 ease-out hover:bg-rose-50/50 hover:text-rose-600"
 										>
-											<LogOut className="h-4 w-4 text-rose-450 group-hover:text-rose-600 transition-colors" />
+											<LogOut className="text-rose-450 h-4 w-4 transition-colors group-hover:text-rose-600" />
 											Sign out
 										</button>
 									</form>

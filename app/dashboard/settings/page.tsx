@@ -13,7 +13,7 @@ export default async function SettingsPage() {
 	const initialEmail = user.email || "";
 
 	return (
-		<div className="min-h-[calc(100vh-4rem)] flex justify-center pt-16 sm:pt-0 sm:items-center p-6">
+		<div className="flex min-h-[calc(100vh-4rem)] justify-center p-6 pt-16 sm:items-center sm:pt-0">
 			<SettingsForm initialName={initialName} initialEmail={initialEmail} />
 		</div>
 	);

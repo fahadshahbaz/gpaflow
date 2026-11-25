@@ -16,7 +16,7 @@ export default function SignupPage() {
 		<div className="space-y-5">
 			{/* Welcome Headers */}
 			<div className="space-y-1">
-				<h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
+				<h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
 					Create Account
 				</h1>
 				<p className="text-sm text-gray-500">
@@ -25,13 +25,13 @@ export default function SignupPage() {
 			</div>
 
 			{state.error && (
-				<div className="rounded-xl bg-rose-50 border border-rose-100 p-3.5 text-xs font-medium text-rose-600 animate-in fade-in slide-in-from-top-1 duration-200">
+				<div className="animate-in fade-in slide-in-from-top-1 rounded-xl border border-rose-100 bg-rose-50 p-3.5 text-xs font-medium text-rose-600 duration-200">
 					{state.error}
 				</div>
 			)}
 
 			{state.success && (
-				<div className="rounded-xl bg-emerald-50 border border-emerald-100 p-3.5 text-xs font-medium text-emerald-600 animate-in fade-in slide-in-from-top-1 duration-200">
+				<div className="animate-in fade-in slide-in-from-top-1 rounded-xl border border-emerald-100 bg-emerald-50 p-3.5 text-xs font-medium text-emerald-600 duration-200">
 					{state.success}
 				</div>
 			)}
@@ -42,7 +42,7 @@ export default function SignupPage() {
 				<div className="space-y-1.5">
 					<label
 						htmlFor="name"
-						className="block text-xs font-semibold uppercase tracking-wider text-gray-400"
+						className="block text-xs font-semibold tracking-wider text-gray-400 uppercase"
 					>
 						Full Name
 					</label>
@@ -52,13 +52,11 @@ export default function SignupPage() {
 						type="text"
 						required
 						defaultValue=""
-						className="block w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-2.5 text-sm text-gray-900 placeholder-slate-400 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06)] focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:outline-none transition-colors duration-200"
+						className="block w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-2.5 text-sm text-gray-900 placeholder-slate-400 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06)] transition-colors duration-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:outline-none"
 						placeholder="Fahad Shahbaz"
 					/>
 					{state.fieldErrors?.name && (
-						<p className="text-xs text-rose-500 font-medium">
-							{state.fieldErrors.name[0]}
-						</p>
+						<p className="text-xs font-medium text-rose-500">{state.fieldErrors.name[0]}</p>
 					)}
 				</div>
 
@@ -66,7 +64,7 @@ export default function SignupPage() {
 				<div className="space-y-1.5">
 					<label
 						htmlFor="email"
-						className="block text-xs font-semibold uppercase tracking-wider text-gray-400"
+						className="block text-xs font-semibold tracking-wider text-gray-400 uppercase"
 					>
 						Email
 					</label>
@@ -76,13 +74,11 @@ export default function SignupPage() {
 						type="email"
 						required
 						defaultValue=""
-						className="block w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-2.5 text-sm text-gray-900 placeholder-slate-400 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06)] focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:outline-none transition-colors duration-200"
+						className="block w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-2.5 text-sm text-gray-900 placeholder-slate-400 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06)] transition-colors duration-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:outline-none"
 						placeholder="fahad@example.com"
 					/>
 					{state.fieldErrors?.email && (
-						<p className="text-xs text-rose-500 font-medium">
-							{state.fieldErrors.email[0]}
-						</p>
+						<p className="text-xs font-medium text-rose-500">{state.fieldErrors.email[0]}</p>
 					)}
 				</div>
 
@@ -90,7 +86,7 @@ export default function SignupPage() {
 				<div className="space-y-1.5">
 					<label
 						htmlFor="password"
-						className="block text-xs font-semibold uppercase tracking-wider text-gray-400"
+						className="block text-xs font-semibold tracking-wider text-gray-400 uppercase"
 					>
 						Password
 					</label>
@@ -100,51 +96,42 @@ export default function SignupPage() {
 							name="password"
 							type={showPassword ? "text" : "password"}
 							required
-							className="block w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-4 pr-11 py-2.5 text-sm text-gray-900 placeholder-slate-400 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06)] focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:outline-none transition-colors duration-200"
+							className="block w-full rounded-xl border border-slate-200 bg-slate-50/70 py-2.5 pr-11 pl-4 text-sm text-gray-900 placeholder-slate-400 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06)] transition-colors duration-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:outline-none"
 							placeholder="Create a password"
 						/>
 						<button
 							type="button"
 							onClick={() => setShowPassword(!showPassword)}
-							className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-gray-400 hover:text-gray-650 transition"
+							className="hover:text-gray-650 absolute inset-y-0 right-0 flex items-center pr-3.5 text-gray-400 transition"
 						>
-							{showPassword ? (
-								<EyeOff className="h-4 w-4" />
-							) : (
-								<Eye className="h-4 w-4" />
-							)}
+							{showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
 						</button>
 					</div>
 					{state.fieldErrors?.password && (
-						<p className="text-xs text-rose-500 font-medium">
-							{state.fieldErrors.password[0]}
-						</p>
+						<p className="text-xs font-medium text-rose-500">{state.fieldErrors.password[0]}</p>
 					)}
 				</div>
 
 				{/* Agree to terms visual checkbox */}
-				<div className="flex items-start gap-2 text-xs text-gray-500 pt-1">
+				<div className="flex items-start gap-2 pt-1 text-xs text-gray-500">
 					<input
 						type="checkbox"
 						required
 						id="terms"
-						className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500/20 focus:ring-offset-0 cursor-pointer"
+						className="mt-0.5 h-4 w-4 cursor-pointer rounded border-slate-300 text-blue-600 focus:ring-blue-500/20 focus:ring-offset-0"
 					/>
-					<label
-						htmlFor="terms"
-						className="cursor-pointer font-medium leading-relaxed"
-					>
+					<label htmlFor="terms" className="cursor-pointer leading-relaxed font-medium">
 						I agree to the{" "}
 						<Link
 							href="/terms"
-							className="text-blue-600 hover:text-blue-750 hover:underline transition font-bold"
+							className="hover:text-blue-750 font-bold text-blue-600 transition hover:underline"
 						>
 							Terms of Service
 						</Link>{" "}
 						and{" "}
 						<Link
 							href="/privacy"
-							className="text-blue-600 hover:text-blue-750 hover:underline transition font-bold"
+							className="hover:text-blue-750 font-bold text-blue-600 transition hover:underline"
 						>
 							Privacy Policy
 						</Link>
@@ -156,7 +143,7 @@ export default function SignupPage() {
 				<button
 					type="submit"
 					disabled={pending}
-					className="w-full flex items-center justify-center gap-2 rounded-xl bg-linear-to-b from-blue-500 via-blue-600 to-blue-700 py-2.5 px-4 text-sm font-extrabold text-white border-t border-x border-blue-700 border-b-[3px] border-blue-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_4px_10px_rgba(37,99,235,0.3)] hover:brightness-105 transition-[transform,brightness] duration-150 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+					className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-x border-t border-b-[3px] border-blue-700 bg-linear-to-b from-blue-500 via-blue-600 to-blue-700 px-4 py-2.5 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_4px_10px_rgba(37,99,235,0.3)] transition-[transform,brightness] duration-150 hover:brightness-105 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
 				>
 					{pending ? (
 						<>
@@ -174,7 +161,7 @@ export default function SignupPage() {
 				<div className="absolute inset-0 flex items-center">
 					<div className="w-full border-t border-gray-100" />
 				</div>
-				<div className="relative flex justify-center text-xs font-medium uppercase text-gray-400">
+				<div className="relative flex justify-center text-xs font-medium text-gray-400 uppercase">
 					<span className="bg-white px-3">Or Register With</span>
 				</div>
 			</div>
@@ -183,7 +170,7 @@ export default function SignupPage() {
 			<form action={signInWithGoogle} className="w-full">
 				<button
 					type="submit"
-					className="w-full flex items-center justify-center gap-2.5 rounded-xl border border-slate-200/80 bg-linear-gradient(180deg,#fff_0%,#f8fafc_100%) py-2.5 px-4 text-xs font-bold text-slate-700 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.06)] hover:bg-slate-50 hover:border-slate-350 transition-[transform,colors] duration-200 active:scale-[0.97] cursor-pointer"
+					className="bg-linear-gradient(180deg,#fff_0%,#f8fafc_100%) hover:border-slate-350 flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border border-slate-200/80 px-4 py-2.5 text-xs font-bold text-slate-700 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.06)] transition-[transform,colors] duration-200 hover:bg-slate-50 active:scale-[0.97]"
 				>
 					<GoogleIcon />
 					Continue with Google
@@ -191,11 +178,11 @@ export default function SignupPage() {
 			</form>
 
 			{/* Login Option */}
-			<p className="text-center text-xs text-gray-500 pt-2">
+			<p className="pt-2 text-center text-xs text-gray-500">
 				Already Have An Account?{" "}
 				<Link
 					href="/login"
-					className="font-bold text-blue-600 hover:text-blue-750 hover:underline transition"
+					className="hover:text-blue-750 font-bold text-blue-600 transition hover:underline"
 				>
 					Log In Now.
 				</Link>

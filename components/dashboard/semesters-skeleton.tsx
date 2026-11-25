@@ -6,20 +6,20 @@ function Skeleton({ className }: { className?: string }) {
 
 export function SemestersSkeletonContent() {
 	return (
-		<div className="max-w-[1600px] mx-auto px-6 py-8">
+		<div className="mx-auto max-w-[1600px] px-6 py-8">
 			{/* Page Header Skeleton */}
-			<div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
+			<div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
 				<div>
-					<Skeleton className="h-9 w-40 mb-2" />
+					<Skeleton className="mb-2 h-9 w-40" />
 					<Skeleton className="h-5 w-64" />
 				</div>
 				<Skeleton className="h-10 w-36 rounded-lg" />
 			</div>
 
 			{/* Semester List Card Skeleton */}
-			<div className="bg-[#f8fafc] border border-slate-200/60 shadow-[inset_0_1.5px_3.5px_rgba(0,0,0,0.04)] rounded-3xl p-6">
+			<div className="rounded-3xl border border-slate-200/60 bg-[#f8fafc] p-6 shadow-[inset_0_1.5px_3.5px_rgba(0,0,0,0.04)]">
 				<div className="mb-6">
-					<Skeleton className="h-6 w-40 mb-2" />
+					<Skeleton className="mb-2 h-6 w-40" />
 					<Skeleton className="h-4 w-56" />
 				</div>
 

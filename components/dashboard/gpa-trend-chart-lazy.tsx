@@ -7,7 +7,7 @@ export const GPATrendChartLazy = dynamic(
 	{
 		ssr: false,
 		loading: () => (
-			<div className="h-[254px] w-full bg-slate-100/50 border border-slate-200/50 rounded-[32px] animate-pulse" />
+			<div className="h-[254px] w-full animate-pulse rounded-[32px] border border-slate-200/50 bg-slate-100/50" />
 		),
 	},
 );

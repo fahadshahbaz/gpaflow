@@ -47,26 +47,25 @@ export function DeleteSubjectDialog({
 
 	return (
 		<AlertDialog open={open} onOpenChange={onOpenChange}>
-			<AlertDialogContent className="bg-white border-gray-200 rounded-2xl">
+			<AlertDialogContent className="rounded-2xl border-gray-200 bg-white">
 				<AlertDialogHeader className="space-y-1">
 					<AlertDialogTitle className="text-lg font-semibold text-gray-900">
 						Delete Subject
 					</AlertDialogTitle>
-					<AlertDialogDescription className="text-gray-500 text-sm">
+					<AlertDialogDescription className="text-sm text-gray-500">
 						This action cannot be undone
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 
 				<div className="py-3">
-					<p className="text-gray-600 text-sm">
+					<p className="text-sm text-gray-600">
 						Are you sure you want to delete{" "}
-						<span className="font-medium text-gray-900">{subjectName}</span>?
-						This will permanently remove this subject and recalculate your
-						semester GPA.
+						<span className="font-medium text-gray-900">{subjectName}</span>? This will permanently
+						remove this subject and recalculate your semester GPA.
 					</p>
 
 					{error && (
-						<div className="mt-3 text-destructive text-sm animate-in fade-in slide-in-from-top-1 duration-150">
+						<div className="text-destructive animate-in fade-in slide-in-from-top-1 mt-3 text-sm duration-150">
 							{error}
 						</div>
 					)}
@@ -75,18 +74,18 @@ export function DeleteSubjectDialog({
 				<AlertDialogFooter className="gap-2">
 					<AlertDialogCancel
 						disabled={loading}
-						className="bg-white border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100 h-9 px-4 rounded-xl"
+						className="h-9 rounded-xl border-gray-200 bg-white px-4 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
 					>
 						Cancel
 					</AlertDialogCancel>
 					<AlertDialogAction
 						onClick={handleDelete}
 						disabled={loading}
-						className="bg-destructive hover:bg-destructive-600 text-destructive-foreground font-medium h-9 px-4 rounded-xl disabled:opacity-50"
+						className="bg-destructive hover:bg-destructive-600 text-destructive-foreground h-9 rounded-xl px-4 font-medium disabled:opacity-50"
 					>
 						{loading ? (
 							<span className="flex items-center gap-2">
-								<span className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+								<span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
 								Deleting...
 							</span>
 						) : (

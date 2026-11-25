@@ -23,10 +23,7 @@ export type AuthState = {
 	};
 };
 
-export async function signUp(
-	_prevState: AuthState,
-	formData: FormData,
-): Promise<AuthState> {
+export async function signUp(_prevState: AuthState, formData: FormData): Promise<AuthState> {
 	const rawData = {
 		name: formData.get("name"),
 		email: formData.get("email"),
@@ -64,10 +61,7 @@ export async function signUp(
 	redirect("/dashboard");
 }
 
-export async function signIn(
-	_prevState: AuthState,
-	formData: FormData,
-): Promise<AuthState> {
+export async function signIn(_prevState: AuthState, formData: FormData): Promise<AuthState> {
 	const rawData = {
 		email: formData.get("email"),
 		password: formData.get("password"),
@@ -151,10 +145,7 @@ export async function forgotPassword(
 	return { success: "Check your email for the password reset link" };
 }
 
-export async function resetPassword(
-	_prevState: AuthState,
-	formData: FormData,
-): Promise<AuthState> {
+export async function resetPassword(_prevState: AuthState, formData: FormData): Promise<AuthState> {
 	const password = formData.get("password") as string;
 	const confirmPassword = formData.get("confirmPassword") as string;
 

@@ -12,11 +12,11 @@ interface QuickInsightsProps {
 
 export function QuickInsights({ avgSGPA, bestSemester }: QuickInsightsProps) {
 	return (
-		<div className="col-span-12 lg:col-span-4 space-y-3">
+		<div className="col-span-12 space-y-3 lg:col-span-4">
 			{/* Average SGPA Card */}
-			<Card className="bg-[#141414] border-[#262626] rounded-xl">
+			<Card className="rounded-xl border-[#262626] bg-[#141414]">
 				<CardContent className="p-4">
-					<div className="flex items-center gap-2 mb-2">
+					<div className="mb-2 flex items-center gap-2">
 						<TrendingUp className="h-4 w-4 text-gray-500" />
 						<span className="text-xs text-gray-500">Average SGPA</span>
 					</div>
@@ -27,17 +27,17 @@ export function QuickInsights({ avgSGPA, bestSemester }: QuickInsightsProps) {
 			</Card>
 
 			{/* Best Semester Card */}
-			<Card className="bg-[#141414] border-[#262626] rounded-xl">
+			<Card className="rounded-xl border-[#262626] bg-[#141414]">
 				<CardContent className="p-4">
-					<div className="flex items-center gap-2 mb-2">
-						<Award className="h-4 w-4 text-warning" />
+					<div className="mb-2 flex items-center gap-2">
+						<Award className="text-warning h-4 w-4" />
 						<span className="text-xs text-gray-500">Best Performance</span>
 					</div>
 					<div className="flex items-center justify-between">
-						<p className="text-sm text-white truncate max-w-[120px]">
+						<p className="max-w-[120px] truncate text-sm text-white">
 							{bestSemester?.name || "No data"}
 						</p>
-						<p className="text-xl font-semibold text-warning">
+						<p className="text-warning text-xl font-semibold">
 							{bestSemester ? bestSemester.sgpa.toFixed(2) : "—"}
 						</p>
 					</div>

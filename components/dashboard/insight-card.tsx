@@ -20,8 +20,7 @@ const motivationalQuotes = [
 	},
 	{ quote: "Education is the passport to the future.", author: "Malcolm X" },
 	{
-		quote:
-			"The beautiful thing about learning is that no one can take it away from you.",
+		quote: "The beautiful thing about learning is that no one can take it away from you.",
 		author: "B.B. King",
 	},
 	{
@@ -76,8 +75,7 @@ function generateInsight(
 		return {
 			percentage: "0%",
 			title: "Start Your Journey",
-			description:
-				"Add your first semester to begin tracking your academic progress.",
+			description: "Add your first semester to begin tracking your academic progress.",
 			gradient: "from-blue-400 via-blue-500 to-indigo-600",
 			quote: randomQuote,
 			tip: randomTip,
@@ -156,42 +154,34 @@ export function InsightCard({ semesters, cgpa }: InsightCardProps) {
 
 	return (
 		<div
-			className={`relative overflow-hidden rounded-[32px] bg-gradient-to-br ${insight.gradient} border border-white/15 p-6 text-white h-full flex flex-col shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05),0_8px_24px_rgba(0,0,0,0.02)]`}
+			className={`relative overflow-hidden rounded-[32px] bg-gradient-to-br ${insight.gradient} flex h-full flex-col border border-white/15 p-6 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05),0_8px_24px_rgba(0,0,0,0.02)]`}
 		>
 			{/* Content */}
 			<div className="relative z-10 mb-4">
-				<div className="flex items-start justify-between mb-3">
-					<div className="flex items-center gap-2 mt-1">
-						<span className="text-xs font-normal uppercase tracking-wider opacity-85">
+				<div className="mb-3 flex items-start justify-between">
+					<div className="mt-1 flex items-center gap-2">
+						<span className="text-xs font-normal tracking-wider uppercase opacity-85">
 							Insights
 						</span>
 					</div>
-					<div className="h-9 w-9 rounded-xl bg-white/15 border border-white/10 text-white flex items-center justify-center flex-shrink-0 transition-transform duration-300 hover:rotate-12">
+					<div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/15 text-white transition-transform duration-300 hover:rotate-12">
 						<Brain className="h-4.5 w-4.5" />
 					</div>
 				</div>
 
-				<div className="flex items-baseline gap-2 mt-1 mb-2">
-					<span className="text-4xl font-light tracking-tight">
-						{insight.percentage}
-					</span>
-					<span className="text-base font-normal opacity-85">
-						{insight.title}
-					</span>
+				<div className="mt-1 mb-2 flex items-baseline gap-2">
+					<span className="text-4xl font-light tracking-tight">{insight.percentage}</span>
+					<span className="text-base font-normal opacity-85">{insight.title}</span>
 				</div>
 
-				<p className="text-sm opacity-85 leading-relaxed font-normal">
-					{insight.description}
-				</p>
+				<p className="text-sm leading-relaxed font-normal opacity-85">{insight.description}</p>
 			</div>
 
 			{/* Quote or Tip */}
-			<div className="relative z-10 pt-3 border-t border-white/15 mt-auto">
+			<div className="relative z-10 mt-auto border-t border-white/15 pt-3">
 				<div className="flex items-start gap-2">
-					<Lightbulb className="h-3.5 w-3.5 mt-0.5 opacity-65 flex-shrink-0" />
-					<p className="text-xs opacity-80 leading-relaxed italic font-normal">
-						"{insight.tip}"
-					</p>
+					<Lightbulb className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 opacity-65" />
+					<p className="text-xs leading-relaxed font-normal italic opacity-80">"{insight.tip}"</p>
 				</div>
 			</div>
 		</div>

@@ -53,10 +53,7 @@ export const GCUF_GP_MAP: Record<number, number> = {
  * Calculates percentage and rounds UP to the next whole number.
  * "Fraction in obtained percentage marks of a course will be rounded to the next whole number"
  */
-export function getRoundedPercentage(
-	obtainedMarks: number,
-	totalMarks = 100,
-): number {
+export function getRoundedPercentage(obtainedMarks: number, totalMarks = 100): number {
 	if (totalMarks <= 0) return 0;
 	const rawPercentage = (obtainedMarks / totalMarks) * 100;
 	return Math.ceil(rawPercentage);
@@ -198,14 +195,8 @@ export function calculateCGPA(
 ): number {
 	if (semesters.length === 0) return 0;
 
-	const totalWeightedPoints = semesters.reduce(
-		(sum, s) => sum + s.sgpa * s.totalCreditHours,
-		0,
-	);
-	const totalCreditHours = semesters.reduce(
-		(sum, s) => sum + s.totalCreditHours,
-		0,
-	);
+	const totalWeightedPoints = semesters.reduce((sum, s) => sum + s.sgpa * s.totalCreditHours, 0);
+	const totalCreditHours = semesters.reduce((sum, s) => sum + s.totalCreditHours, 0);
 
 	if (totalCreditHours === 0) return 0;
 	return Math.round((totalWeightedPoints / totalCreditHours) * 100) / 100;

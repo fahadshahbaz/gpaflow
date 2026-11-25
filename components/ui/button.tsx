@@ -20,8 +20,7 @@ const buttonVariants = cva(
 					"bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30",
 				link: "text-primary underline-offset-4 hover:underline",
 				skeuoPrimary: "btn-skeuo-primary text-white hover:text-white",
-				skeuoWhite:
-					"btn-skeuo-white text-gray-900 dark:btn-skeuo-dark dark:text-gray-100",
+				skeuoWhite: "btn-skeuo-white text-gray-900 dark:btn-skeuo-dark dark:text-gray-100",
 				skeuoGlass: "btn-skeuo-glass text-gray-800 dark:text-gray-100",
 			},
 			size: {

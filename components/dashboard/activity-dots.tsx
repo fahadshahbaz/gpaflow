@@ -31,11 +31,7 @@ export function ActivityDots({ semesters }: ActivityDotsProps) {
 		[activity.semesters],
 	);
 
-	const getDotStyles = (
-		semesterIndex: number,
-		dotIndex: number,
-		totalDots: number,
-	) => {
+	const getDotStyles = (semesterIndex: number, dotIndex: number, totalDots: number) => {
 		const isActive = dotIndex < totalDots;
 		if (!isActive) {
 			return "bg-slate-100 border border-slate-200/50 shadow-[inset_0_1.5px_2.5px_rgba(0,0,0,0.05),0_1px_0_#ffffff] hover:scale-105";
@@ -66,34 +62,28 @@ export function ActivityDots({ semesters }: ActivityDotsProps) {
 	};
 
 	return (
-		<div className="card-skeuo rounded-[32px] p-6 h-full flex flex-col">
-			<div className="flex items-start justify-between mb-4">
+		<div className="card-skeuo flex h-full flex-col rounded-[32px] p-6">
+			<div className="mb-4 flex items-start justify-between">
 				<div>
 					<h3 className="text-lg font-semibold text-slate-800">Subjects</h3>
-					<p className="text-sm text-slate-500 font-normal">
-						Semester-wise subject breakdown
-					</p>
+					<p className="text-sm font-normal text-slate-500">Semester-wise subject breakdown</p>
 				</div>
-				<div className="icon-skeuo-raised h-9 w-9 rounded-xl border border-slate-200/80 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.02)] text-slate-400/90 flex items-center justify-center flex-shrink-0">
+				<div className="icon-skeuo-raised flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200/80 text-slate-400/90 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.02)]">
 					<BookOpen className="h-4.5 w-4.5" />
 				</div>
 			</div>
 
 			{/* Big Number */}
-			<div className="flex items-end gap-4 mb-3.5">
-				<span className="text-4xl font-light text-slate-800 tracking-tight leading-none">
+			<div className="mb-3.5 flex items-end gap-4">
+				<span className="text-4xl leading-none font-light tracking-tight text-slate-800">
 					{activity.total}
 				</span>
 				<div className="mb-1">
-					<span className="text-sm text-slate-400 font-normal">
-						total subjects
-					</span>
+					<span className="text-sm font-normal text-slate-400">total subjects</span>
 				</div>
-				<div className="text-right mb-1 ml-auto">
-					<p className="text-xs text-slate-400 font-normal leading-tight">
-						avg per semester
-					</p>
-					<p className="text-sm font-normal text-emerald-600 leading-tight mt-0.5">
+				<div className="mb-1 ml-auto text-right">
+					<p className="text-xs leading-tight font-normal text-slate-400">avg per semester</p>
+					<p className="mt-0.5 text-sm leading-tight font-normal text-emerald-600">
 						{activity.avgPerSemester}
 					</p>
 				</div>
@@ -101,30 +91,26 @@ export function ActivityDots({ semesters }: ActivityDotsProps) {
 
 			{/* Semester Grid or Empty State */}
 			{activity.semesters.length === 0 ? (
-				<div className="text-center py-8 text-slate-400 text-sm font-normal my-auto">
+				<div className="my-auto py-8 text-center text-sm font-normal text-slate-400">
 					No semesters added yet
 				</div>
 			) : (
-				<div className="space-y-2 my-2">
+				<div className="my-2 space-y-2">
 					{activity.semesters.map((semester, semesterIndex) => (
 						<div key={semester.name} className="flex items-center gap-3 py-1">
-							<span className="text-xs text-slate-500 font-normal w-6 flex-shrink-0">
+							<span className="w-6 flex-shrink-0 text-xs font-normal text-slate-500">
 								{semester.name}
 							</span>
-							<div className="flex gap-1.5 flex-1">
+							<div className="flex flex-1 gap-1.5">
 								{Array.from({ length: maxSubjects }, (_, dotIndex) => (
 									<div
 										key={dotIndex}
 										className={`h-3 w-3 rounded-full transition-[transform,box-shadow] duration-200 ease-out ${getDotStyles(semesterIndex, dotIndex, semester.subjects)}`}
-										title={
-											dotIndex < semester.subjects
-												? `Subject ${dotIndex + 1}`
-												: ""
-										}
+										title={dotIndex < semester.subjects ? `Subject ${dotIndex + 1}` : ""}
 									/>
 								))}
 							</div>
-							<span className="text-xs font-normal text-slate-700 w-4 text-right">
+							<span className="w-4 text-right text-xs font-normal text-slate-700">
 								{semester.subjects}
 							</span>
 						</div>
@@ -134,18 +120,16 @@ export function ActivityDots({ semesters }: ActivityDotsProps) {
 
 			{/* Legend */}
 			{activity.semesters.length > 0 && (
-				<div className="flex items-center justify-between mt-auto pt-2.5 border-t border-slate-100/90">
+				<div className="mt-auto flex items-center justify-between border-t border-slate-100/90 pt-2.5">
 					<div className="flex items-center gap-1.5">
-						<div className="h-2.5 w-2.5 rounded-full bg-emerald-500/20 border border-emerald-500/10" />
-						<div className="h-2.5 w-2.5 rounded-full bg-emerald-500/60 border border-emerald-500/10" />
+						<div className="h-2.5 w-2.5 rounded-full border border-emerald-500/10 bg-emerald-500/20" />
+						<div className="h-2.5 w-2.5 rounded-full border border-emerald-500/10 bg-emerald-500/60" />
 						<div className="h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_4px_rgba(16,185,129,0.4)]" />
-						<span className="text-xs text-slate-400 font-normal ml-1">
-							Recent semesters
-						</span>
+						<span className="ml-1 text-xs font-normal text-slate-400">Recent semesters</span>
 					</div>
 					<div className="flex items-center gap-1.5">
-						<div className="h-2.5 w-2.5 rounded-full bg-slate-100 border border-slate-200/50 shadow-[inset_0_1px_1.5px_rgba(0,0,0,0.05)]" />
-						<span className="text-xs text-slate-400 font-normal">Empty</span>
+						<div className="h-2.5 w-2.5 rounded-full border border-slate-200/50 bg-slate-100 shadow-[inset_0_1px_1.5px_rgba(0,0,0,0.05)]" />
+						<span className="text-xs font-normal text-slate-400">Empty</span>
 					</div>
 				</div>
 			)}

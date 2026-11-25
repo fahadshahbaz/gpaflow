@@ -42,11 +42,7 @@ export async function deleteSemester(id: string) {
 
 	const supabase = await createClient();
 
-	const { error } = await supabase
-		.from("semesters")
-		.delete()
-		.eq("id", id)
-		.eq("user_id", user.id);
+	const { error } = await supabase.from("semesters").delete().eq("id", id).eq("user_id", user.id);
 
 	if (error) throw error;
 
@@ -101,8 +97,7 @@ export async function createSubject(semesterId: string, data: SubjectInput) {
 		throw new Error("Semester not found");
 	}
 
-	const university =
-		(user.user_metadata?.university as UniversitySlug) || "numl";
+	const university = (user.user_metadata?.university as UniversitySlug) || "numl";
 	const engine = getUniversityGradingEngine(university);
 
 	const { error } = await supabase.from("subjects").insert({
@@ -187,20 +182,15 @@ export async function updateSubject(
 		}
 
 		const finalObtainedMarks =
-			data.obtained_marks !== undefined
-				? data.obtained_marks
-				: existingSubject.obtained_marks;
+			data.obtained_marks !== undefined ? data.obtained_marks : existingSubject.obtained_marks;
 		const finalCreditHours =
-			data.credit_hours !== undefined
-				? data.credit_hours
-				: existingSubject.credit_hours;
+			data.credit_hours !== undefined ? data.credit_hours : existingSubject.credit_hours;
 		const finalTotalMarks =
 			data.total_marks !== undefined
 				? data.total_marks
 				: (existingSubject.total_marks ?? undefined);
 
-		const university =
-			(user.user_metadata?.university as UniversitySlug) || "numl";
+		const university = (user.user_metadata?.university as UniversitySlug) || "numl";
 		const engine = getUniversityGradingEngine(university);
 
 		updateData.grade_point = engine.calculateGradePoint(
@@ -209,11 +199,7 @@ export async function updateSubject(
 			finalTotalMarks,
 		);
 		updateData.letter_grade = String(
-			engine.getLetterGrade(
-				finalObtainedMarks,
-				finalCreditHours,
-				finalTotalMarks,
-			),
+			engine.getLetterGrade(finalObtainedMarks, finalCreditHours, finalTotalMarks),
 		);
 	}
 

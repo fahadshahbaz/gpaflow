@@ -29,7 +29,7 @@ export function Logo({ size = "md", href }: LogoProps) {
 
 	const logoIcon = (
 		<div
-			className={`flex ${s.container} aspect-square items-center justify-center bg-blue-600 flex-shrink-0 group-hover:bg-blue-500 transition-[background-color,transform] duration-200 ease-out active:scale-[0.97]`}
+			className={`flex ${s.container} aspect-square flex-shrink-0 items-center justify-center bg-blue-600 transition-[background-color,transform] duration-200 ease-out group-hover:bg-blue-500 active:scale-[0.97]`}
 		>
 			<GraduationCap className={`${s.icon} text-white`} />
 		</div>
@@ -38,7 +38,7 @@ export function Logo({ size = "md", href }: LogoProps) {
 	const content = (
 		<>
 			{logoIcon}
-			<span className={`${s.text} font-bold text-gray-900 tracking-tight`}>
+			<span className={`${s.text} font-bold tracking-tight text-gray-900`}>
 				GPA<span className="text-blue-600">Flow</span>
 			</span>
 		</>
@@ -48,14 +48,12 @@ export function Logo({ size = "md", href }: LogoProps) {
 		return (
 			<Link
 				href={href}
-				className="inline-flex items-center gap-2.5 group active:scale-[0.97] transition-[transform] duration-200 ease-out h-fit"
+				className="group inline-flex h-fit items-center gap-2.5 transition-[transform] duration-200 ease-out active:scale-[0.97]"
 			>
 				{content}
 			</Link>
 		);
 	}
 
-	return (
-		<div className="inline-flex items-center gap-2.5 h-fit">{content}</div>
-	);
+	return <div className="inline-flex h-fit items-center gap-2.5">{content}</div>;
 }

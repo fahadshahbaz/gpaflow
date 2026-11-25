@@ -31,9 +31,7 @@ export async function proxy(request: NextRequest) {
 
 	// Protected routes - redirect to login if not authenticated
 	const protectedPaths = ["/dashboard"];
-	const isProtectedPath = protectedPaths.some((path) =>
-		request.nextUrl.pathname.startsWith(path),
-	);
+	const isProtectedPath = protectedPaths.some((path) => request.nextUrl.pathname.startsWith(path));
 
 	if (isProtectedPath && !user) {
 		return NextResponse.redirect(new URL("/login", request.url));
@@ -45,15 +43,8 @@ export async function proxy(request: NextRequest) {
 	}
 
 	// Auth routes - redirect to dashboard if already authenticated
-	const authPaths = [
-		"/login",
-		"/signup",
-		"/forgot-password",
-		"/reset-password",
-	];
-	const isAuthPath = authPaths.some((path) =>
-		request.nextUrl.pathname.startsWith(path),
-	);
+	const authPaths = ["/login", "/signup", "/forgot-password", "/reset-password"];
+	const isAuthPath = authPaths.some((path) => request.nextUrl.pathname.startsWith(path));
 
 	if (isAuthPath && user) {
 		return NextResponse.redirect(new URL("/dashboard", request.url));

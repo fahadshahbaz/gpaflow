@@ -33,9 +33,7 @@ interface SemesterListProps {
 export function SemesterList({ semesters, university }: SemesterListProps) {
 	const _engine = getUniversityGradingEngine(university);
 	const [editingSemester, setEditingSemester] = useState<Semester | null>(null);
-	const [deletingSemester, setDeletingSemester] = useState<Semester | null>(
-		null,
-	);
+	const [deletingSemester, setDeletingSemester] = useState<Semester | null>(null);
 	const [editingSubject, setEditingSubject] = useState<{
 		subject: Subject;
 		semesterId: string;
@@ -53,13 +51,11 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 	if (semesters.length === 0) {
 		return (
 			<div className="py-16 text-center">
-				<div className="h-14 w-14 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-4">
+				<div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100">
 					<BookOpen className="h-7 w-7 text-gray-400" />
 				</div>
-				<h3 className="text-lg font-medium text-gray-900 mb-1">
-					No semesters yet
-				</h3>
-				<p className="text-sm text-gray-500 max-w-xs mx-auto">
+				<h3 className="mb-1 text-lg font-medium text-gray-900">No semesters yet</h3>
+				<p className="mx-auto max-w-xs text-sm text-gray-500">
 					Start tracking your academic journey by adding your first semester
 				</p>
 			</div>
@@ -75,7 +71,7 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 					return (
 						<div
 							key={semester.id}
-							className="t-acc card-skeuo rounded-2xl overflow-hidden mb-3"
+							className="t-acc card-skeuo mb-3 overflow-hidden rounded-2xl"
 							data-open={isCurrentExpanded}
 						>
 							{/* Accordion Trigger Header */}
@@ -88,20 +84,18 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 								}}
 								role="button"
 								tabIndex={0}
-								className="flex items-center justify-between p-3 sm:p-4 cursor-pointer select-none"
+								className="flex cursor-pointer items-center justify-between p-3 select-none sm:p-4"
 							>
 								<div className="flex items-center gap-2 sm:gap-3">
 									{/* Tactile Inset Number Circle */}
-									<div className="h-9 w-9 rounded-xl icon-skeuo-inset flex items-center justify-center">
-										<span className="text-xs font-bold text-gray-500">
-											{index + 1}
-										</span>
+									<div className="icon-skeuo-inset flex h-9 w-9 items-center justify-center rounded-xl">
+										<span className="text-xs font-bold text-gray-500">{index + 1}</span>
 									</div>
 									<div>
-										<h4 className="text-xs sm:text-sm font-bold text-gray-900 whitespace-nowrap">
+										<h4 className="text-xs font-bold whitespace-nowrap text-gray-900 sm:text-sm">
 											{semester.name}
 										</h4>
-										<p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+										<p className="text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
 											{semester.year}
 										</p>
 									</div>
@@ -109,10 +103,10 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 
 								<div className="flex items-center gap-1.5 sm:gap-3">
 									{/* Tactile Badges */}
-									<span className="px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-lg sm:rounded-xl icon-skeuo-raised text-blue-600 text-[10px] sm:text-xs font-bold">
+									<span className="icon-skeuo-raised rounded-lg px-1.5 py-0.5 text-[10px] font-bold text-blue-600 sm:rounded-xl sm:px-3 sm:py-1.5 sm:text-xs">
 										{semester.sgpa.toFixed(2)} SGPA
 									</span>
-									<span className="px-2.5 py-1.5 rounded-xl icon-skeuo-inset text-gray-500 text-xs font-medium hidden sm:inline">
+									<span className="icon-skeuo-inset hidden rounded-xl px-2.5 py-1.5 text-xs font-medium text-gray-500 sm:inline">
 										{semester.total_credit_hours} Credits
 									</span>
 
@@ -121,7 +115,7 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 										<DropdownMenuTrigger asChild>
 											<button
 												type="button"
-												className="h-8 w-8 rounded-full hover:bg-slate-200/50 flex items-center justify-center text-gray-400 cursor-pointer"
+												className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-gray-400 hover:bg-slate-200/50"
 												aria-label="More options"
 												onClick={(e) => e.stopPropagation()}
 											>
@@ -130,16 +124,16 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 										</DropdownMenuTrigger>
 										<DropdownMenuContent
 											align="end"
-											className="bg-white border-gray-200 min-w-[140px] rounded-xl shadow-lg z-50"
+											className="z-50 min-w-[140px] rounded-xl border-gray-200 bg-white shadow-lg"
 										>
 											<DropdownMenuItem
 												onClick={(e) => {
 													e.stopPropagation();
 													setEditingSemester(semester);
 												}}
-												className="cursor-pointer text-sm rounded-lg"
+												className="cursor-pointer rounded-lg text-sm"
 											>
-												<Pencil className="h-4 w-4 mr-2 text-gray-400" />
+												<Pencil className="mr-2 h-4 w-4 text-gray-400" />
 												Edit
 											</DropdownMenuItem>
 											<DropdownMenuItem
@@ -148,9 +142,9 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 													e.stopPropagation();
 													setDeletingSemester(semester);
 												}}
-												className="cursor-pointer text-sm rounded-lg"
+												className="cursor-pointer rounded-lg text-sm"
 											>
-												<Trash2 className="h-4 w-4 mr-2" />
+												<Trash2 className="mr-2 h-4 w-4" />
 												Delete
 											</DropdownMenuItem>
 										</DropdownMenuContent>
@@ -163,10 +157,10 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 
 							{/* Collapsible Panel Body */}
 							<div className="t-acc-panel">
-								<div className="t-acc-panel-inner p-4 border-t border-slate-100/90 bg-slate-50/20 space-y-2.5">
+								<div className="t-acc-panel-inner space-y-2.5 border-t border-slate-100/90 bg-slate-50/20 p-4">
 									{semester.subjects.length === 0 ? (
-										<div className="py-8 text-center bg-white rounded-xl border border-slate-150 shadow-[0_2px_8px_rgba(15,23,42,0.01)]">
-											<p className="text-sm text-gray-500 mb-3">
+										<div className="border-slate-150 rounded-xl border bg-white py-8 text-center shadow-[0_2px_8px_rgba(15,23,42,0.01)]">
+											<p className="mb-3 text-sm text-gray-500">
 												No subjects added to this semester yet
 											</p>
 											<AddSubjectDialog
@@ -180,7 +174,7 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 														className="text-primary hover:text-primary-700 hover:bg-primary-50 h-8 text-xs font-bold"
 													>
 														Add subject
-														<ChevronRight className="h-3.5 w-3.5 ml-1" />
+														<ChevronRight className="ml-1 h-3.5 w-3.5" />
 													</Button>
 												}
 											/>
@@ -190,23 +184,23 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 											{semester.subjects.map((subject) => (
 												<div
 													key={subject.id}
-													className="flex items-center justify-between rounded-xl bg-slate-50/50 border border-slate-200/50 px-4 py-3 text-sm group/subject hover:bg-slate-50 transition-colors shadow-[inset_0_1px_0_#ffffff]"
+													className="group/subject flex items-center justify-between rounded-xl border border-slate-200/50 bg-slate-50/50 px-4 py-3 text-sm shadow-[inset_0_1px_0_#ffffff] transition-colors hover:bg-slate-50"
 												>
-													<span className="text-gray-700 truncate flex-1 font-semibold">
+													<span className="flex-1 truncate font-semibold text-gray-700">
 														{subject.name}
 													</span>
 													<div className="flex items-center gap-3">
-														<span className="px-2.5 py-1 rounded-lg icon-skeuo-raised text-blue-650 font-extrabold text-xs">
+														<span className="icon-skeuo-raised text-blue-650 rounded-lg px-2.5 py-1 text-xs font-extrabold">
 															{subject.letter_grade}
 														</span>
-														<span className="text-gray-400 font-bold text-xs uppercase tracking-wider">
+														<span className="text-xs font-bold tracking-wider text-gray-400 uppercase">
 															{subject.credit_hours} CH
 														</span>
 														<DropdownMenu>
 															<DropdownMenuTrigger asChild>
 																<button
 																	type="button"
-																	className="h-6 w-6 rounded-full hover:bg-gray-200 flex items-center justify-center text-gray-400 opacity-0 group-hover/subject:opacity-100 transition-opacity cursor-pointer"
+																	className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-full text-gray-400 opacity-0 transition-opacity group-hover/subject:opacity-100 hover:bg-gray-200"
 																	aria-label="Subject options"
 																	onClick={(e) => e.stopPropagation()}
 																>
@@ -215,7 +209,7 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 															</DropdownMenuTrigger>
 															<DropdownMenuContent
 																align="end"
-																className="bg-white border-gray-200 min-w-[110px] rounded-xl shadow-lg z-50"
+																className="z-50 min-w-[110px] rounded-xl border-gray-200 bg-white shadow-lg"
 															>
 																<DropdownMenuItem
 																	onClick={(e) => {
@@ -225,9 +219,9 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 																			semesterId: semester.id,
 																		});
 																	}}
-																	className="cursor-pointer text-xs rounded-lg"
+																	className="cursor-pointer rounded-lg text-xs"
 																>
-																	<Pencil className="h-3.5 w-3.5 mr-2 text-gray-400" />
+																	<Pencil className="mr-2 h-3.5 w-3.5 text-gray-400" />
 																	Edit
 																</DropdownMenuItem>
 																<DropdownMenuItem
@@ -239,9 +233,9 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 																			semesterId: semester.id,
 																		});
 																	}}
-																	className="cursor-pointer text-xs rounded-lg"
+																	className="cursor-pointer rounded-lg text-xs"
 																>
-																	<Trash2 className="h-3.5 w-3.5 mr-2" />
+																	<Trash2 className="mr-2 h-3.5 w-3.5" />
 																	Delete
 																</DropdownMenuItem>
 															</DropdownMenuContent>
@@ -257,7 +251,7 @@ export function SemesterList({ semesters, university }: SemesterListProps) {
 												trigger={
 													<button
 														type="button"
-														className="w-full text-slate-500 hover:text-blue-600 hover:bg-blue-50/20 rounded-xl py-2.5 text-xs font-bold flex items-center justify-center gap-1 transition-colors duration-200 ease-out border border-dashed border-slate-200 hover:border-blue-400/50 cursor-pointer"
+														className="flex w-full cursor-pointer items-center justify-center gap-1 rounded-xl border border-dashed border-slate-200 py-2.5 text-xs font-bold text-slate-500 transition-colors duration-200 ease-out hover:border-blue-400/50 hover:bg-blue-50/20 hover:text-blue-600"
 													>
 														<Plus className="h-3.5 w-3.5" />
 														Add Subject

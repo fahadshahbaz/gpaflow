@@ -6,9 +6,7 @@ import * as numlEngine from "./numl";
 /**
  * Get the grading engine for a specific university
  */
-export function getUniversityGradingEngine(
-	university: UniversitySlug,
-): GradingEngine {
+export function getUniversityGradingEngine(university: UniversitySlug): GradingEngine {
 	switch (university) {
 		case "gcwuf":
 			return {
@@ -23,22 +21,12 @@ export function getUniversityGradingEngine(
 			return gcufEngine.engEngine;
 		default:
 			return {
-				calculateGradePoint: (
-					marks: number,
-					_creditHours?: number,
-					totalMarks?: number,
-				) => {
-					const percentage =
-						totalMarks && totalMarks > 0 ? (marks / totalMarks) * 100 : marks;
+				calculateGradePoint: (marks: number, _creditHours?: number, totalMarks?: number) => {
+					const percentage = totalMarks && totalMarks > 0 ? (marks / totalMarks) * 100 : marks;
 					return numlEngine.calculateGradePoint(percentage);
 				},
-				getLetterGrade: (
-					marks: number,
-					_creditHours?: number,
-					totalMarks?: number,
-				) => {
-					const percentage =
-						totalMarks && totalMarks > 0 ? (marks / totalMarks) * 100 : marks;
+				getLetterGrade: (marks: number, _creditHours?: number, totalMarks?: number) => {
+					const percentage = totalMarks && totalMarks > 0 ? (marks / totalMarks) * 100 : marks;
 					return numlEngine.getLetterGrade(percentage);
 				},
 				calculateSGPA: numlEngine.calculateSGPA,

@@ -45,15 +45,13 @@ export function AppSidebar({ userName, userEmail }: AppSidebarProps) {
 	return (
 		<Sidebar className="border-r border-[#2a2a2a] bg-[#0f0f0f]">
 			<SidebarHeader className="border-b border-[#2a2a2a] p-5">
-				<Link href="/dashboard" className="flex items-center gap-3 h-fit">
-					<div className="flex h-10 w-10 aspect-square items-center justify-center rounded-full bg-linear-to-br from-primary to-destructive shadow-lg shadow-primary/20 transition-transform duration-200 hover:scale-105 active:scale-98">
-						<GraduationCap className="h-5 w-5 text-primary-foreground" />
+				<Link href="/dashboard" className="flex h-fit items-center gap-3">
+					<div className="from-primary to-destructive shadow-primary/20 flex aspect-square h-10 w-10 items-center justify-center rounded-full bg-linear-to-br shadow-lg transition-transform duration-200 hover:scale-105 active:scale-98">
+						<GraduationCap className="text-primary-foreground h-5 w-5" />
 					</div>
 					<div>
-						<span className="text-lg font-bold text-white tracking-tight">
-							GPA Flow
-						</span>
-						<p className="text-[10px] text-gray-500 uppercase tracking-widest font-medium">
+						<span className="text-lg font-bold tracking-tight text-white">GPA Flow</span>
+						<p className="text-[10px] font-medium tracking-widest text-gray-500 uppercase">
 							Academic Tracker
 						</p>
 					</div>
@@ -62,7 +60,7 @@ export function AppSidebar({ userName, userEmail }: AppSidebarProps) {
 
 			<SidebarContent className="px-3 py-6">
 				<SidebarGroup>
-					<SidebarGroupLabel className="px-3 text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-3">
+					<SidebarGroupLabel className="mb-3 px-3 text-[10px] font-semibold tracking-widest text-gray-500 uppercase">
 						Menu
 					</SidebarGroupLabel>
 					<SidebarGroupContent>
@@ -74,22 +72,19 @@ export function AppSidebar({ userName, userEmail }: AppSidebarProps) {
 										<SidebarMenuButton
 											asChild
 											isActive={isActive}
-											className="relative rounded-xl h-11 transition-colors hover:bg-[#1a1a1a] data-[active=true]:bg-transparent"
+											className="relative h-11 rounded-xl transition-colors hover:bg-[#1a1a1a] data-[active=true]:bg-transparent"
 										>
-											<Link
-												href={item.href}
-												className="flex items-center gap-3 px-3"
-											>
+											<Link href={item.href} className="flex items-center gap-3 px-3">
 												<item.icon
 													className={`h-4 w-4 transition-colors ${isActive ? "text-primary" : "text-muted-foreground"}`}
 												/>
 												<span
-													className={`font-medium text-sm transition-colors ${isActive ? "text-foreground" : "text-muted-foreground"}`}
+													className={`text-sm font-medium transition-colors ${isActive ? "text-foreground" : "text-muted-foreground"}`}
 												>
 													{item.title}
 												</span>
 												{isActive && (
-													<div className="absolute inset-0 bg-primary/10 rounded-xl border border-primary/20 -z-10 animate-in fade-in-0 zoom-in-[0.97] duration-150 ease-out" />
+													<div className="bg-primary/10 border-primary/20 animate-in fade-in-0 zoom-in-[0.97] absolute inset-0 -z-10 rounded-xl border duration-150 ease-out" />
 												)}
 											</Link>
 										</SidebarMenuButton>
@@ -103,20 +98,18 @@ export function AppSidebar({ userName, userEmail }: AppSidebarProps) {
 				{/* Stats Mini Card */}
 				<SidebarGroup className="mt-6">
 					<SidebarGroupContent>
-						<div className="rounded-2xl bg-linear-to-br from-primary/10 to-destructive/10 border border-primary/20 p-4">
-							<div className="flex items-center gap-2 mb-3">
-								<Award className="h-4 w-4 text-primary" />
-								<span className="text-xs font-semibold text-foreground">
-									Your Progress
-								</span>
+						<div className="from-primary/10 to-destructive/10 border-primary/20 rounded-2xl border bg-linear-to-br p-4">
+							<div className="mb-3 flex items-center gap-2">
+								<Award className="text-primary h-4 w-4" />
+								<span className="text-foreground text-xs font-semibold">Your Progress</span>
 							</div>
 							<div className="space-y-2">
 								<div className="flex items-center justify-between text-xs">
 									<span className="text-muted-foreground">CGPA</span>
 									<span className="text-primary font-semibold">3.48</span>
 								</div>
-								<div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-									<div className="h-full w-[87%] bg-linear-to-br from-primary to-destructive rounded-full" />
+								<div className="bg-secondary h-1.5 overflow-hidden rounded-full">
+									<div className="from-primary to-destructive h-full w-[87%] rounded-full bg-linear-to-br" />
 								</div>
 								<p className="text-[10px] text-gray-500">87% to 4.0 target</p>
 							</div>
@@ -126,23 +119,22 @@ export function AppSidebar({ userName, userEmail }: AppSidebarProps) {
 			</SidebarContent>
 
 			<SidebarFooter className="p-4">
-				<div className="rounded-2xl bg-[#1a1a1a] border border-[#2a2a2a] p-4">
-					<div className="flex items-center gap-3 mb-4">
-						<div className="h-9 w-9 rounded-full bg-linear-to-br from-gray-700 to-gray-600 flex items-center justify-center text-xs font-bold text-white">
-							{userName?.charAt(0).toUpperCase() ||
-								userEmail?.charAt(0).toUpperCase()}
+				<div className="rounded-2xl border border-[#2a2a2a] bg-[#1a1a1a] p-4">
+					<div className="mb-4 flex items-center gap-3">
+						<div className="flex h-9 w-9 items-center justify-center rounded-full bg-linear-to-br from-gray-700 to-gray-600 text-xs font-bold text-white">
+							{userName?.charAt(0).toUpperCase() || userEmail?.charAt(0).toUpperCase()}
 						</div>
-						<div className="flex-1 min-w-0">
-							<p className="text-xs font-semibold text-white truncate">
+						<div className="min-w-0 flex-1">
+							<p className="truncate text-xs font-semibold text-white">
 								{userName || userEmail?.split("@")[0]}
 							</p>
-							<p className="text-[10px] text-gray-500 truncate">{userEmail}</p>
+							<p className="truncate text-[10px] text-gray-500">{userEmail}</p>
 						</div>
 					</div>
 					<form action={signOut}>
 						<button
 							type="submit"
-							className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary/10 px-3 py-2.5 text-xs font-medium text-muted-foreground hover:text-destructive hover:bg-destructive-500/10 transition-all duration-150 active:scale-[0.98] border border-border cursor-pointer"
+							className="bg-secondary/10 text-muted-foreground hover:text-destructive hover:bg-destructive-500/10 border-border flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-xs font-medium transition-all duration-150 active:scale-[0.98]"
 						>
 							<LogOut className="h-3.5 w-3.5" />
 							Sign Out

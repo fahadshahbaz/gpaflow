@@ -48,22 +48,20 @@ export default function OnboardingPage() {
 	};
 
 	return (
-		<main className="min-h-screen bg-background text-foreground pt-16 px-4">
-			<div className="w-full max-w-2xl mx-auto space-y-8">
+		<main className="bg-background text-foreground min-h-screen px-4 pt-16">
+			<div className="mx-auto w-full max-w-2xl space-y-8">
 				<div className="text-center">
-					<div className="inline-flex items-center justify-center mb-6">
+					<div className="mb-6 inline-flex items-center justify-center">
 						<Logo href="/" />
 					</div>
-					<h1 className="text-2xl font-bold text-gray-900">
-						Select your university
-					</h1>
+					<h1 className="text-2xl font-bold text-gray-900">Select your university</h1>
 					<p className="mt-2 text-gray-500">
 						We'll use the correct grading formula for your institution
 					</p>
 				</div>
 
 				{error && (
-					<div className="rounded-lg bg-red-50 border border-red-100 p-3 text-sm text-red-600 text-center">
+					<div className="rounded-lg border border-red-100 bg-red-50 p-3 text-center text-sm text-red-600">
 						{error}
 					</div>
 				)}
@@ -75,49 +73,35 @@ export default function OnboardingPage() {
 							type="button"
 							disabled={!uni.available}
 							onClick={() => uni.id && setSelected(uni.id)}
-							className={`
-								relative p-6 rounded-2xl border-2 text-left transition-all
-								${
-									uni.available
-										? selected === uni.id
-											? "border-blue-500 bg-blue-50/50 card-shadow"
-											: "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
-										: "border-gray-100 bg-gray-50 opacity-60 cursor-not-allowed"
-								}
-							`}
+							className={`relative rounded-2xl border-2 p-6 text-left transition-all ${
+								uni.available
+									? selected === uni.id
+										? "card-shadow border-blue-500 bg-blue-50/50"
+										: "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
+									: "cursor-not-allowed border-gray-100 bg-gray-50 opacity-60"
+							} `}
 						>
 							<div className="flex items-start justify-between">
 								<div>
-									<h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+									<h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
 										{uni.name}
 										{uni.id?.startsWith("gcuf_") && (
-											<span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+											<span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-600">
 												Undergrad Only
 											</span>
 										)}
 									</h3>
-									<p className="text-sm text-gray-500 mt-0.5">{uni.fullName}</p>
-									<p className="text-sm text-gray-400 mt-2">
-										{uni.description}
-									</p>
+									<p className="mt-0.5 text-sm text-gray-500">{uni.fullName}</p>
+									<p className="mt-2 text-sm text-gray-400">{uni.description}</p>
 								</div>
 								{uni.available && (
 									<div
-										className={`
-											w-5 h-5 rounded-full border-2 flex items-center justify-center
-											${
-												selected === uni.id
-													? "border-blue-500 bg-blue-500"
-													: "border-gray-300"
-											}
-										`}
+										className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${
+											selected === uni.id ? "border-blue-500 bg-blue-500" : "border-gray-300"
+										} `}
 									>
 										{selected === uni.id && (
-											<svg
-												className="w-3 h-3 text-white"
-												fill="currentColor"
-												viewBox="0 0 20 20"
-											>
+											<svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
 												<title>Selected</title>
 												<path
 													fillRule="evenodd"
@@ -129,7 +113,7 @@ export default function OnboardingPage() {
 									</div>
 								)}
 								{!uni.available && (
-									<span className="text-xs font-medium text-gray-400 bg-gray-200 px-2 py-1 rounded-full">
+									<span className="rounded-full bg-gray-200 px-2 py-1 text-xs font-medium text-gray-400">
 										Coming Soon
 									</span>
 								)}
@@ -142,14 +126,12 @@ export default function OnboardingPage() {
 					type="button"
 					onClick={handleContinue}
 					disabled={!selected || loading}
-					className="w-full rounded-xl bg-blue-500 px-4 py-3 font-medium text-white transition hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+					className="w-full rounded-xl bg-blue-500 px-4 py-3 font-medium text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
 				>
 					{loading ? "Setting up..." : "Continue to Dashboard"}
 				</button>
 
-				<p className="text-center text-xs text-gray-400">
-					You can change this later in settings
-				</p>
+				<p className="text-center text-xs text-gray-400">You can change this later in settings</p>
 			</div>
 		</main>
 	);

@@ -264,14 +264,8 @@ export function calculateCGPA(
 ): number {
 	if (semesters.length === 0) return 0;
 
-	const totalWeightedPoints = semesters.reduce(
-		(sum, s) => sum + s.sgpa * s.totalCreditHours,
-		0,
-	);
-	const totalCreditHours = semesters.reduce(
-		(sum, s) => sum + s.totalCreditHours,
-		0,
-	);
+	const totalWeightedPoints = semesters.reduce((sum, s) => sum + s.sgpa * s.totalCreditHours, 0);
+	const totalCreditHours = semesters.reduce((sum, s) => sum + s.totalCreditHours, 0);
 
 	if (totalCreditHours === 0) return 0;
 	return Math.round((totalWeightedPoints / totalCreditHours) * 100) / 100;
@@ -287,8 +281,7 @@ export function calculateRequiredSGPA(
 
 	const currentWeightedSum = currentCGPA * currentCredits;
 	const totalCreditsAfter = currentCredits + nextSemesterCredits;
-	const requiredSGPA =
-		(targetCGPA * totalCreditsAfter - currentWeightedSum) / nextSemesterCredits;
+	const requiredSGPA = (targetCGPA * totalCreditsAfter - currentWeightedSum) / nextSemesterCredits;
 
 	if (requiredSGPA > 4.0) return null;
 	if (requiredSGPA < 0) return 0;

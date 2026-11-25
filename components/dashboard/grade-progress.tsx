@@ -50,10 +50,7 @@ export function GradeProgress({ semesters }: GradeProgressProps) {
 		}));
 	}, [semesters]);
 
-	const totalSubjects = useMemo(
-		() => breakdown.reduce((sum, b) => sum + b.count, 0),
-		[breakdown],
-	);
+	const totalSubjects = useMemo(() => breakdown.reduce((sum, b) => sum + b.count, 0), [breakdown]);
 
 	const topGradePercentage = breakdown[0]?.percentage || 0;
 
@@ -72,56 +69,50 @@ export function GradeProgress({ semesters }: GradeProgressProps) {
 	}, [breakdown, totalSubjects]);
 
 	return (
-		<div className="card-skeuo rounded-[32px] p-6 h-full flex flex-col justify-between">
+		<div className="card-skeuo flex h-full flex-col justify-between rounded-[32px] p-6">
 			<div>
-				<div className="flex items-start justify-between mb-4">
+				<div className="mb-4 flex items-start justify-between">
 					<div>
-						<h3 className="text-lg font-semibold text-slate-800">
-							Grade Distribution
-						</h3>
+						<h3 className="text-lg font-semibold text-slate-800">Grade Distribution</h3>
 						{totalSubjects > 0 && (
-							<div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-emerald-200/50 bg-emerald-50/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1.5px_3px_rgba(0,0,0,0.03)] mt-1.5">
+							<div className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-emerald-200/50 bg-emerald-50/80 px-2.5 py-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1.5px_3px_rgba(0,0,0,0.03)]">
 								<span className="text-xs font-normal text-emerald-600">
 									{topGradePercentage}% A's
 								</span>
 							</div>
 						)}
 					</div>
-					<div className="icon-skeuo-raised h-9 w-9 rounded-xl border border-slate-200/80 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.02)] text-slate-400/90 flex items-center justify-center flex-shrink-0">
+					<div className="icon-skeuo-raised flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200/80 text-slate-400/90 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.02)]">
 						<Award className="h-4.5 w-4.5" />
 					</div>
 				</div>
 
 				{/* Big Number */}
-				<div className="flex items-end gap-3 mb-3.5">
-					<span className="text-4xl font-light text-slate-800 tracking-tight leading-none">
+				<div className="mb-3.5 flex items-end gap-3">
+					<span className="text-4xl leading-none font-light tracking-tight text-slate-800">
 						{totalSubjects}
 					</span>
 					<div className="mb-1">
-						<span className="text-sm text-slate-400 font-normal">subjects</span>
+						<span className="text-sm font-normal text-slate-400">subjects</span>
 					</div>
 				</div>
 
 				{/* Progress Bars or Empty State */}
 				{totalSubjects === 0 ? (
-					<div className="text-center py-8 text-slate-400 text-sm font-normal">
+					<div className="py-8 text-center text-sm font-normal text-slate-400">
 						No subjects added yet
 					</div>
 				) : (
 					<div className="space-y-3">
 						{breakdown.map((item) => (
 							<div key={item.grade}>
-								<div className="flex items-center justify-between mb-1.5">
-									<span className="text-sm text-slate-500 font-normal">
-										{item.grade}
-									</span>
-									<span className="text-sm font-normal text-slate-700">
-										{item.count}
-									</span>
+								<div className="mb-1.5 flex items-center justify-between">
+									<span className="text-sm font-normal text-slate-500">{item.grade}</span>
+									<span className="text-sm font-normal text-slate-700">{item.count}</span>
 								</div>
-								<div className="h-3 bg-slate-100/90 rounded-full shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06),0_1px_0_rgba(255,255,255,0.8)] border border-slate-200/20 p-[1px] overflow-hidden">
+								<div className="h-3 overflow-hidden rounded-full border border-slate-200/20 bg-slate-100/90 p-[1px] shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.06),0_1px_0_rgba(255,255,255,0.8)]">
 									<div
-										className="h-full rounded-full transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_1px_2px_rgba(0,0,0,0.12)]"
+										className="h-full rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_1px_2px_rgba(0,0,0,0.12)] transition-all duration-500"
 										style={{
 											width: `${item.percentage}%`,
 											backgroundImage: `repeating-linear-gradient(90deg, transparent 0px, transparent 3px, rgba(255,255,255,0.15) 3px, rgba(255,255,255,0.15) 5px), ${item.color}`,
@@ -136,18 +127,14 @@ export function GradeProgress({ semesters }: GradeProgressProps) {
 
 			{/* Bottom Insight Footer */}
 			{totalSubjects > 0 && (
-				<div className="flex items-center justify-between mt-auto pt-2.5 border-t border-slate-100/90 text-xs text-slate-400 font-normal">
+				<div className="mt-auto flex items-center justify-between border-t border-slate-100/90 pt-2.5 text-xs font-normal text-slate-400">
 					<div className="flex items-center gap-1">
 						<span>Most frequent:</span>
-						<span className="font-semibold text-slate-600">
-							{mostFrequentGrade?.grade}
-						</span>
+						<span className="font-semibold text-slate-600">{mostFrequentGrade?.grade}</span>
 					</div>
 					<div className="flex items-center gap-1">
 						<span>Passing rate:</span>
-						<span className="font-semibold text-emerald-600">
-							{passingPercentage}%
-						</span>
+						<span className="font-semibold text-emerald-600">{passingPercentage}%</span>
 					</div>
 				</div>
 			)}

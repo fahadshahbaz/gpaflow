@@ -9,9 +9,7 @@ interface AcademicTimelineProps {
 }
 
 export function AcademicTimeline({ semesters }: AcademicTimelineProps) {
-	const sortedSemesters = [...semesters].sort(
-		(a, b) => a.semester_number - b.semester_number,
-	);
+	const sortedSemesters = [...semesters].sort((a, b) => a.semester_number - b.semester_number);
 
 	// Demo data if no real data
 	const demoSemesters = [
@@ -52,49 +50,42 @@ export function AcademicTimeline({ semesters }: AcademicTimelineProps) {
 		},
 	];
 
-	const displaySemesters =
-		sortedSemesters.length > 0 ? sortedSemesters : demoSemesters;
+	const displaySemesters = sortedSemesters.length > 0 ? sortedSemesters : demoSemesters;
 	const isDemo = semesters.length === 0;
 
 	return (
-		<Card className="col-span-12 lg:col-span-8 bg-[#141414] border-[#262626] rounded-xl">
-			<CardHeader className="pb-2 flex flex-row items-center justify-between">
+		<Card className="col-span-12 rounded-xl border-[#262626] bg-[#141414] lg:col-span-8">
+			<CardHeader className="flex flex-row items-center justify-between pb-2">
 				<div className="flex items-center gap-2">
 					<Calendar className="h-4 w-4 text-gray-500" />
-					<CardTitle className="text-sm font-medium text-white">
-						Timeline
-					</CardTitle>
+					<CardTitle className="text-sm font-medium text-white">Timeline</CardTitle>
 					{isDemo && (
-						<span className="text-[10px] text-gray-600 bg-[#1a1a1a] px-1.5 py-0.5 rounded">
+						<span className="rounded bg-[#1a1a1a] px-1.5 py-0.5 text-[10px] text-gray-600">
 							Demo
 						</span>
 					)}
 				</div>
-				<span className="text-xs text-gray-600">
-					{displaySemesters.length} of 8
-				</span>
+				<span className="text-xs text-gray-600">{displaySemesters.length} of 8</span>
 			</CardHeader>
 			<CardContent className="pt-2">
 				<div className="relative">
 					{/* Timeline bar */}
-					<div className="absolute top-4 left-0 right-0 h-0.5 bg-[#1a1a1a] rounded-full" />
+					<div className="absolute top-4 right-0 left-0 h-0.5 rounded-full bg-[#1a1a1a]" />
 
 					{/* Progress indicator */}
 					<div
-						className="absolute top-4 left-0 h-0.5 bg-primary rounded-full transition-all duration-500"
+						className="bg-primary absolute top-4 left-0 h-0.5 rounded-full transition-all duration-500"
 						style={{ width: `${(displaySemesters.length / 8) * 100}%` }}
 					/>
 
 					{/* Semester dots */}
-					<div className="flex justify-between relative pt-1">
+					<div className="relative flex justify-between pt-1">
 						{displaySemesters.map((semester, index) => (
 							<div key={semester.id} className="flex flex-col items-center">
-								<div className="w-3 h-3 rounded-full bg-[#141414] border-2 border-primary" />
+								<div className="border-primary h-3 w-3 rounded-full border-2 bg-[#141414]" />
 								<div className="mt-2 text-center">
 									<p className="text-[10px] text-gray-600">S{index + 1}</p>
-									<p className="text-xs font-medium text-white">
-										{semester.sgpa.toFixed(2)}
-									</p>
+									<p className="text-xs font-medium text-white">{semester.sgpa.toFixed(2)}</p>
 								</div>
 							</div>
 						))}
@@ -103,15 +94,10 @@ export function AcademicTimeline({ semesters }: AcademicTimelineProps) {
 						{Array.from({
 							length: Math.max(0, 8 - displaySemesters.length),
 						}).map((_, i) => (
-							<div
-								key={`future-${i}`}
-								className="flex flex-col items-center opacity-30"
-							>
-								<div className="w-3 h-3 rounded-full bg-[#141414] border border-dashed border-[#333]" />
+							<div key={`future-${i}`} className="flex flex-col items-center opacity-30">
+								<div className="h-3 w-3 rounded-full border border-dashed border-[#333] bg-[#141414]" />
 								<div className="mt-2 text-center">
-									<p className="text-[10px] text-gray-600">
-										S{displaySemesters.length + i + 1}
-									</p>
+									<p className="text-[10px] text-gray-600">S{displaySemesters.length + i + 1}</p>
 								</div>
 							</div>
 						))}
@@ -119,28 +105,22 @@ export function AcademicTimeline({ semesters }: AcademicTimelineProps) {
 				</div>
 
 				{/* Stats */}
-				<div className="mt-6 pt-3 border-t border-[#1f1f1f] flex items-center gap-6 text-xs">
+				<div className="mt-6 flex items-center gap-6 border-t border-[#1f1f1f] pt-3 text-xs">
 					<div>
 						<p className="text-gray-600">Completed</p>
-						<p className="text-white font-medium">
-							{displaySemesters.length} semesters
-						</p>
+						<p className="font-medium text-white">{displaySemesters.length} semesters</p>
 					</div>
 					<div>
 						<p className="text-gray-600">Credits</p>
-						<p className="text-white font-medium">
-							{displaySemesters.reduce(
-								(sum, s) => sum + s.total_credit_hours,
-								0,
-							)}
+						<p className="font-medium text-white">
+							{displaySemesters.reduce((sum, s) => sum + s.total_credit_hours, 0)}
 						</p>
 					</div>
 					<div>
 						<p className="text-gray-600">Average</p>
 						<p className="text-primary font-medium">
 							{(
-								displaySemesters.reduce((sum, s) => sum + s.sgpa, 0) /
-								displaySemesters.length
+								displaySemesters.reduce((sum, s) => sum + s.sgpa, 0) / displaySemesters.length
 							).toFixed(2)}
 						</p>
 					</div>

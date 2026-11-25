@@ -5,9 +5,9 @@ import { Navigation } from "@/components/landing/navigation";
 
 export default function HomePage() {
 	return (
-		<div className="w-full bg-[#f8fafc] min-h-screen relative overflow-x-hidden selection:bg-blue-100">
+		<div className="relative min-h-screen w-full overflow-x-hidden bg-[#f8fafc] selection:bg-blue-100">
 			<AmbientBackground />
-			<div className="max-w-[1440px] mx-auto min-h-screen flex flex-col justify-between relative z-10">
+			<div className="relative z-10 mx-auto flex min-h-screen max-w-[1440px] flex-col justify-between">
 				<Navigation />
 				<Hero />
 				<Footer />

@@ -4,11 +4,7 @@ import { TopNav } from "@/components/top-nav";
 import { getUser } from "@/lib/supabase/auth";
 import { getDashboardStats } from "@/lib/supabase/queries";
 
-export default async function DashboardLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
 	const user = await getUser();
 
 	if (!user) {
@@ -20,18 +16,15 @@ export default async function DashboardLayout({
 		redirect("/onboarding");
 	}
 
-	const userName =
-		user?.user_metadata?.name || user?.email?.split("@")[0] || "User";
+	const userName = user?.user_metadata?.name || user?.email?.split("@")[0] || "User";
 
 	const userTargetGpa = user.user_metadata?.target_gpa ?? 3.5;
 	const stats = await getDashboardStats(user.id, userTargetGpa);
 	const isGraduated = stats.semesterCount >= 8 && stats.cgpa >= 2.0;
 
 	return (
-		<div className="min-h-screen bg-background text-foreground">
-			{isGraduated && (
-				<GraduationBanner userName={userName} cgpa={stats.cgpa} />
-			)}
+		<div className="bg-background text-foreground min-h-screen">
+			{isGraduated && <GraduationBanner userName={userName} cgpa={stats.cgpa} />}
 			<TopNav userName={userName} userEmail={user?.email} />
 			<main
 				className="flex-1 pt-24"

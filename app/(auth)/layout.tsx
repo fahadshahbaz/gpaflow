@@ -1,49 +1,33 @@
 import { Logo } from "@/components/ui/logo";
 
-export default function AuthLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<main className="min-h-screen bg-white flex flex-col lg:flex-row font-sans">
+		<main className="flex min-h-screen flex-col bg-white font-sans lg:flex-row">
 			{/* Left Column - Auth Form */}
-			<div className="w-full lg:w-1/2 flex flex-col justify-between p-6 sm:p-8 md:p-10 min-h-screen bg-white">
+			<div className="flex min-h-screen w-full flex-col justify-between bg-white p-6 sm:p-8 md:p-10 lg:w-1/2">
 				{/* Top Logo */}
-				<div className="flex items-center justify-start h-fit">
+				<div className="flex h-fit items-center justify-start">
 					<Logo href="/" />
 				</div>
 
 				{/* Form Content Wrapper */}
-				<div className="w-full max-w-105 mx-auto my-auto py-4 sm:py-6">
-					{children}
-				</div>
+				<div className="mx-auto my-auto w-full max-w-105 py-4 sm:py-6">{children}</div>
 			</div>
 			{/* Right Column - Premium Academic Dashboard Mockup */}
-			<div className="hidden lg:flex w-1/2 p-6 bg-slate-50 justify-center items-center min-h-screen relative overflow-hidden">
+			<div className="relative hidden min-h-screen w-1/2 items-center justify-center overflow-hidden bg-slate-50 p-6 lg:flex">
 				{/* Vibrant Royal Blue/Sky Blue Main Panel */}
-				<div className="w-full h-full rounded-[2.5rem] bg-linear-to-br from-blue-700 via-blue-600 to-sky-600 relative overflow-hidden flex flex-col justify-between p-12 text-white shadow-[inset_0_4px_12px_rgba(255,255,255,0.22),inset_0_-4px_12px_rgba(0,0,0,0.3),0_20px_50px_rgba(29,78,216,0.15)]">
+				<div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[2.5rem] bg-linear-to-br from-blue-700 via-blue-600 to-sky-600 p-12 text-white shadow-[inset_0_4px_12px_rgba(255,255,255,0.22),inset_0_-4px_12px_rgba(0,0,0,0.3),0_20px_50px_rgba(29,78,216,0.15)]">
 					{/* Glowing decorative nodes */}
-					<div className="absolute inset-0 opacity-15 pointer-events-none">
-						<div className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] rounded-full bg-white blur-[120px]" />
-						<div className="absolute bottom-[-15%] right-[-15%] w-[75%] h-[75%] rounded-full bg-sky-300 blur-[130px]" />
+					<div className="pointer-events-none absolute inset-0 opacity-15">
+						<div className="absolute top-[-10%] left-[-10%] h-[70%] w-[70%] rounded-full bg-white blur-[120px]" />
+						<div className="absolute right-[-15%] bottom-[-15%] h-[75%] w-[75%] rounded-full bg-sky-300 blur-[130px]" />
 
 						{/* Grid pattern overlay */}
-						<svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+						<svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
 							<title>Grid pattern</title>
 							<defs>
-								<pattern
-									id="grid"
-									width="48"
-									height="48"
-									patternUnits="userSpaceOnUse"
-								>
-									<path
-										d="M 48 0 L 0 0 0 48"
-										fill="none"
-										stroke="white"
-										strokeWidth="1"
-									/>
+								<pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+									<path d="M 48 0 L 0 0 0 48" fill="none" stroke="white" strokeWidth="1" />
 								</pattern>
 							</defs>
 							<rect width="100%" height="100%" fill="url(#grid)" />
@@ -52,48 +36,38 @@ export default function AuthLayout({
 
 					{/* Top Section - Quiet branding note */}
 					<div className="relative z-10">
-						<span className="text-xs font-bold tracking-wider text-blue-200/70 uppercase font-mono">
+						<span className="font-mono text-xs font-bold tracking-wider text-blue-200/70 uppercase">
 							GPAFlow Predictive Platform
 						</span>
 					</div>
 
 					{/* Center Area - Typographic Hero & Floating Transparent Graph */}
-					<div className="my-auto space-y-8 max-w-2xl w-full relative z-10">
+					<div className="relative z-10 my-auto w-full max-w-2xl space-y-8">
 						<div className="space-y-6">
-							<h3 className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.15] tracking-tight">
+							<h3 className="text-4xl leading-[1.15] font-extrabold tracking-tight text-white sm:text-5xl">
 								Master your academic <br />
-								<span className="text-transparent bg-clip-text bg-linear-to-r from-blue-200 to-sky-200">
+								<span className="bg-linear-to-r from-blue-200 to-sky-200 bg-clip-text text-transparent">
 									trajectory.
 								</span>
 							</h3>
-							<p className="text-blue-100/80 text-base font-light leading-relaxed text-justify">
-								GPAFlow provides a beautiful, state-of-the-art predictive
-								dashboard to visualize semesters, track progression, and
-								automate your degree planning down to the decimal.
+							<p className="text-justify text-base leading-relaxed font-light text-blue-100/80">
+								GPAFlow provides a beautiful, state-of-the-art predictive dashboard to visualize
+								semesters, track progression, and automate your degree planning down to the decimal.
 							</p>
 						</div>
 
 						{/* Minimal line graph without bg color */}
-						<div className="relative w-full h-35 pt-4 select-none">
+						<div className="relative h-35 w-full pt-4 select-none">
 							{/* Horizontal grid lines */}
 							<div className="absolute inset-x-0 top-0 h-px bg-white/10" />
-							<div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-white/5" />
+							<div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/5" />
 							<div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
 
-							<svg
-								className="w-full h-full overflow-visible"
-								viewBox="0 0 500 100"
-							>
+							<svg className="h-full w-full overflow-visible" viewBox="0 0 500 100">
 								<title>GPA Trajectory Flow</title>
 								<defs>
 									{/* Glow Filter for the main trend line */}
-									<filter
-										id="lineGlow"
-										x="-20%"
-										y="-20%"
-										width="140%"
-										height="140%"
-									>
+									<filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
 										<feDropShadow
 											dx="0"
 											dy="4"

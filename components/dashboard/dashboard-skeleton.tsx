@@ -6,15 +6,15 @@ function Skeleton({ className }: { className?: string }) {
 
 export function DashboardSkeletonContent() {
 	return (
-		<div className="max-w-[1600px] mx-auto px-6 py-6">
+		<div className="mx-auto max-w-[1600px] px-6 py-6">
 			{/* Welcome Header Skeleton */}
 			<div className="mb-6">
-				<Skeleton className="h-9 w-64 mb-2" />
+				<Skeleton className="mb-2 h-9 w-64" />
 				<Skeleton className="h-5 w-48" />
 			</div>
 
 			{/* Stats Grid Skeleton */}
-			<div className="grid grid-cols-12 gap-3 mb-3">
+			<div className="mb-3 grid grid-cols-12 gap-3">
 				<div className="col-span-6 sm:col-span-3">
 					<Skeleton className="h-28 rounded-2xl" />
 				</div>
@@ -30,7 +30,7 @@ export function DashboardSkeletonContent() {
 			</div>
 
 			{/* Chart + Insights Skeleton */}
-			<div className="grid grid-cols-12 gap-3 mb-3">
+			<div className="mb-3 grid grid-cols-12 gap-3">
 				<div className="col-span-12 lg:col-span-8">
 					<Skeleton className="h-80 rounded-3xl" />
 				</div>

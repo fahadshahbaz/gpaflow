@@ -77,8 +77,7 @@ const POLICIES: UniversityPolicy[] = [
 		name: "GC University Faisalabad (General / Arts)",
 		description: "For bachelor degrees in arts and general science.",
 		passMark: "40%",
-		rounding:
-			"Ceil Round (decimals always round UP, e.g., 52.1% goes up to 53%)",
+		rounding: "Ceil Round (decimals always round UP, e.g., 52.1% goes up to 53%)",
 		calculation: "Looks up your grade points directly from a table",
 		isNew: true,
 		gradeTable: [
@@ -99,10 +98,8 @@ const POLICIES: UniversityPolicy[] = [
 		name: "GC University Faisalabad (Engineering)",
 		description: "For bachelor degrees in engineering.",
 		passMark: "55%",
-		rounding:
-			"Ceil Round (decimals always round UP, e.g., 52.1% goes up to 53%)",
-		calculation:
-			"Looks up your grade points from a table. No C-, C, or D grades allowed.",
+		rounding: "Ceil Round (decimals always round UP, e.g., 52.1% goes up to 53%)",
+		calculation: "Looks up your grade points from a table. No C-, C, or D grades allowed.",
 		isNew: true,
 		gradeTable: [
 			{ grade: "A", marks: "85% and above", gp: "4.00" },
@@ -124,23 +121,22 @@ export default function SupportedUniversitiesPage() {
 	};
 
 	return (
-		<main className="min-h-screen bg-[#fafafa] text-slate-700 py-16 px-6 sm:px-8 selection:bg-blue-50">
-			<div className="max-w-3xl mx-auto space-y-12">
+		<main className="min-h-screen bg-[#fafafa] px-6 py-16 text-slate-700 selection:bg-blue-50 sm:px-8">
+			<div className="mx-auto max-w-3xl space-y-12">
 				{/* Header */}
 				<header className="space-y-6">
 					<Link
 						href="/"
-						className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-slate-900 transition-colors uppercase tracking-wider"
+						className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-slate-400 uppercase transition-colors hover:text-slate-900"
 					>
 						<ArrowLeft className="h-3.5 w-3.5" /> Back to Home
 					</Link>
 					<div className="space-y-2">
-						<h1 className="text-3xl font-semibold text-slate-900 tracking-tight">
+						<h1 className="text-3xl font-semibold tracking-tight text-slate-900">
 							Supported Universities
 						</h1>
-						<p className="text-sm text-slate-500 leading-relaxed max-w-[60ch]">
-							This page shows how different universities calculate your grades
-							and GPAs.
+						<p className="max-w-[60ch] text-sm leading-relaxed text-slate-500">
+							This page shows how different universities calculate your grades and GPAs.
 						</p>
 					</div>
 				</header>
@@ -154,7 +150,7 @@ export default function SupportedUniversitiesPage() {
 							<article
 								key={uni.slug}
 								data-open={isOpen ? "true" : "false"}
-								className="t-acc t-stagger-item card-skeuo rounded-2xl overflow-hidden mb-3"
+								className="t-acc t-stagger-item card-skeuo mb-3 overflow-hidden rounded-2xl"
 								style={{ animationDelay: `${idx * 40}ms` }}
 							>
 								{/* Trigger Header */}
@@ -167,13 +163,13 @@ export default function SupportedUniversitiesPage() {
 									}}
 									role="button"
 									tabIndex={0}
-									className="flex items-center justify-between p-4 sm:p-5 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/30 rounded-t-2xl"
+									className="flex cursor-pointer items-center justify-between rounded-t-2xl p-4 select-none focus-visible:ring-2 focus-visible:ring-blue-500/30 focus-visible:outline-none sm:p-5"
 								>
 									<div className="space-y-1 pr-4">
-										<h2 className="text-base font-semibold text-slate-900 flex items-center gap-2">
+										<h2 className="flex items-center gap-2 text-base font-semibold text-slate-900">
 											{uni.name}
 											{uni.isNew ? (
-												<span className="text-[9px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded-md border border-blue-100 uppercase tracking-wider">
+												<span className="rounded-md border border-blue-100 bg-blue-50 px-1.5 py-0.5 text-[9px] font-bold tracking-wider text-blue-600 uppercase">
 													New
 												</span>
 											) : null}
@@ -186,27 +182,23 @@ export default function SupportedUniversitiesPage() {
 								{/* Collapsible Content */}
 								<div className="t-acc-panel overflow-hidden">
 									<div className="t-acc-panel-inner">
-										<div className="p-4 sm:p-6 border-t border-slate-100/90 bg-slate-50/20 space-y-6">
+										<div className="space-y-6 border-t border-slate-100/90 bg-slate-50/20 p-4 sm:p-6">
 											{/* Rules Grid */}
-											<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-												<div className="bg-white border border-slate-100 rounded-xl p-4 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-													<span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+											<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+												<div className="rounded-xl border border-slate-100 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
+													<span className="mb-1 block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">
 														Passing Mark
 													</span>
-													<span className="text-sm font-medium text-slate-800">
-														{uni.passMark}
-													</span>
+													<span className="text-sm font-medium text-slate-800">{uni.passMark}</span>
 												</div>
-												<div className="bg-white border border-slate-100 rounded-xl p-4 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-													<span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+												<div className="rounded-xl border border-slate-100 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
+													<span className="mb-1 block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">
 														Rounding Policy
 													</span>
-													<span className="text-sm font-medium text-slate-800">
-														{uni.rounding}
-													</span>
+													<span className="text-sm font-medium text-slate-800">{uni.rounding}</span>
 												</div>
-												<div className="bg-white border border-slate-100 rounded-xl p-4 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-													<span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+												<div className="rounded-xl border border-slate-100 bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
+													<span className="mb-1 block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">
 														Engine Strategy
 													</span>
 													<span className="text-sm font-medium text-slate-800">
@@ -217,33 +209,26 @@ export default function SupportedUniversitiesPage() {
 
 											{/* Grade Table */}
 											<div className="space-y-3">
-												<span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block pl-1">
+												<span className="block pl-1 text-[10px] font-semibold tracking-wider text-slate-400 uppercase">
 													Grade Point Equivalents
 												</span>
-												<div className="bg-white border border-slate-100 rounded-xl overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-													<table className="w-full text-left text-xs border-collapse">
+												<div className="overflow-hidden rounded-xl border border-slate-100 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
+													<table className="w-full border-collapse text-left text-xs">
 														<thead>
-															<tr className="bg-slate-50 border-b border-slate-100 text-slate-400 font-semibold uppercase tracking-wider">
-																<th className="py-2.5 px-4">Grade</th>
-																<th className="py-2.5 px-4">Marks Range</th>
-																<th className="py-2.5 px-4">
-																	Grade Point (GP)
-																</th>
+															<tr className="border-b border-slate-100 bg-slate-50 font-semibold tracking-wider text-slate-400 uppercase">
+																<th className="px-4 py-2.5">Grade</th>
+																<th className="px-4 py-2.5">Marks Range</th>
+																<th className="px-4 py-2.5">Grade Point (GP)</th>
 															</tr>
 														</thead>
 														<tbody className="divide-y divide-slate-100 text-slate-700">
 															{uni.gradeTable.map((row) => (
-																<tr
-																	key={row.grade}
-																	className="hover:bg-slate-50/20"
-																>
-																	<td className="py-2 px-4 font-semibold text-slate-900">
+																<tr key={row.grade} className="hover:bg-slate-50/20">
+																	<td className="px-4 py-2 font-semibold text-slate-900">
 																		{row.grade}
 																	</td>
-																	<td className="py-2 px-4">{row.marks}</td>
-																	<td className="py-2 px-4 font-mono tabular-nums">
-																		{row.gp}
-																	</td>
+																	<td className="px-4 py-2">{row.marks}</td>
+																	<td className="px-4 py-2 font-mono tabular-nums">{row.gp}</td>
 																</tr>
 															))}
 														</tbody>
@@ -258,10 +243,10 @@ export default function SupportedUniversitiesPage() {
 					})}
 				</div>
 
-				<footer className="text-center pt-8 text-xs text-slate-400">
+				<footer className="pt-8 text-center text-xs text-slate-400">
 					<p>
-						© {new Date().getFullYear()} GPAFlow. Calculation methods align with
-						official university guidelines.
+						© {new Date().getFullYear()} GPAFlow. Calculation methods align with official university
+						guidelines.
 					</p>
 				</footer>
 			</div>

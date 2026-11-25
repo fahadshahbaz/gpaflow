@@ -1,14 +1,8 @@
 import { z } from "zod";
 
 export const subjectSchema = z.object({
-	name: z
-		.string()
-		.min(1, "Subject name is required")
-		.max(100, "Subject name is too long"),
-	obtained_marks: z
-		.number()
-		.min(0, "Marks cannot be negative")
-		.max(100, "Marks cannot exceed 100"),
+	name: z.string().min(1, "Subject name is required").max(100, "Subject name is too long"),
+	obtained_marks: z.number().min(0, "Marks cannot be negative").max(100, "Marks cannot exceed 100"),
 	total_marks: z.number().min(1).optional(),
 	credit_hours: z
 		.number()

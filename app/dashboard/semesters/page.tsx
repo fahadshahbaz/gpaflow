@@ -13,30 +13,25 @@ export default async function SemestersPage() {
 	}
 
 	const semesters = await getSemesters(user.id);
-	const university =
-		(user.user_metadata?.university as UniversitySlug) || "numl";
+	const university = (user.user_metadata?.university as UniversitySlug) || "numl";
 
 	return (
-		<div className="max-w-400 mx-auto px-4 sm:px-6 py-8">
+		<div className="mx-auto max-w-400 px-4 py-8 sm:px-6">
 			{/* Page Header */}
-			<div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
+			<div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
 				<div>
 					<h1 className="text-3xl font-light text-gray-900">
 						<span className="font-medium">Semesters</span>
 					</h1>
-					<p className="text-gray-500 mt-1">
-						Manage your academic records and subjects
-					</p>
+					<p className="mt-1 text-gray-500">Manage your academic records and subjects</p>
 				</div>
 				<AddSemesterDialog semesterCount={semesters.length} />
 			</div>
 
 			{/* Semester List */}
-			<div className="rounded-3xl bg-[#f8fafc] border border-slate-200/60 shadow-[inset_0_1.5px_3.5px_rgba(0,0,0,0.04)] p-4 sm:p-6">
+			<div className="rounded-3xl border border-slate-200/60 bg-[#f8fafc] p-4 shadow-[inset_0_1.5px_3.5px_rgba(0,0,0,0.04)] sm:p-6">
 				<div className="mb-6">
-					<h2 className="text-lg font-semibold text-gray-900">
-						Academic Records
-					</h2>
+					<h2 className="text-lg font-semibold text-gray-900">Academic Records</h2>
 					<p className="text-sm text-gray-500">
 						{semesters.length === 0
 							? "No semesters added yet. Add your first semester to get started."

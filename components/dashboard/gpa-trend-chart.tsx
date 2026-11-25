@@ -40,8 +40,7 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 			const semesterPoints = semester.sgpa * semester.total_credit_hours;
 			cumulativePoints += semesterPoints;
 			cumulativeCredits += semester.total_credit_hours;
-			const cgpa =
-				cumulativeCredits > 0 ? cumulativePoints / cumulativeCredits : 0;
+			const cgpa = cumulativeCredits > 0 ? cumulativePoints / cumulativeCredits : 0;
 
 			return {
 				name: `S${index + 1}`,
@@ -56,27 +55,23 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 	const hasData = chartData.length > 0;
 
 	return (
-		<div className="card-skeuo rounded-[32px] p-5 h-full flex flex-col justify-between">
+		<div className="card-skeuo flex h-full flex-col justify-between rounded-[32px] p-5">
 			{/* Header */}
-			<div className="flex items-start justify-between mb-2.5 select-none">
+			<div className="mb-2.5 flex items-start justify-between select-none">
 				<div>
-					<h3 className="text-lg font-semibold text-slate-800">
-						GPA Progression
-					</h3>
-					<p className="text-sm text-slate-500 font-normal">
-						Semester-wise performance tracking
-					</p>
+					<h3 className="text-lg font-semibold text-slate-800">GPA Progression</h3>
+					<p className="text-sm font-normal text-slate-500">Semester-wise performance tracking</p>
 				</div>
-				<div className="icon-skeuo-raised h-9 w-9 rounded-xl border border-slate-200/80 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.02)] text-slate-400/90 flex items-center justify-center flex-shrink-0">
+				<div className="icon-skeuo-raised flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200/80 text-slate-400/90 shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.02)]">
 					<TrendingUp className="h-4.5 w-4.5" />
 				</div>
 			</div>
 
 			{hasData ? (
-				<div className="flex flex-col justify-between flex-1 mt-1.5 min-h-[175px] relative">
-					<div className="relative h-[135px] w-full mt-1">
+				<div className="relative mt-1.5 flex min-h-[175px] flex-1 flex-col justify-between">
+					<div className="relative mt-1 h-[135px] w-full">
 						{/* Baseline Shelf */}
-						<div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-slate-200/70 z-0 rounded-full" />
+						<div className="absolute right-0 bottom-0 left-0 z-0 h-[1.5px] rounded-full bg-slate-200/70" />
 
 						{/* Recharts Chart */}
 						<div className="absolute inset-0 z-10">
@@ -95,55 +90,17 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 									onMouseLeave={() => setHoveredIndex(null)}
 								>
 									<defs>
-										<linearGradient
-											id="activeBarGradient"
-											x1="0"
-											y1="0"
-											x2="0"
-											y2="1"
-										>
-											<stop
-												offset="0%"
-												stopColor="var(--primary)"
-												stopOpacity={1}
-											/>
-											<stop
-												offset="100%"
-												stopColor="#1d4ed8"
-												stopOpacity={0.95}
-											/>
+										<linearGradient id="activeBarGradient" x1="0" y1="0" x2="0" y2="1">
+											<stop offset="0%" stopColor="var(--primary)" stopOpacity={1} />
+											<stop offset="100%" stopColor="#1d4ed8" stopOpacity={0.95} />
 										</linearGradient>
-										<linearGradient
-											id="fadedBarGradient"
-											x1="0"
-											y1="0"
-											x2="0"
-											y2="1"
-										>
+										<linearGradient id="fadedBarGradient" x1="0" y1="0" x2="0" y2="1">
 											<stop offset="0%" stopColor="#e2e8f0" stopOpacity={0.4} />
-											<stop
-												offset="100%"
-												stopColor="#cbd5e1"
-												stopOpacity={0.2}
-											/>
+											<stop offset="100%" stopColor="#cbd5e1" stopOpacity={0.2} />
 										</linearGradient>
-										<linearGradient
-											id="connectorGradient"
-											x1="0"
-											y1="0"
-											x2="0"
-											y2="1"
-										>
-											<stop
-												offset="0%"
-												stopColor="var(--primary)"
-												stopOpacity={0.08}
-											/>
-											<stop
-												offset="100%"
-												stopColor="var(--primary)"
-												stopOpacity={0.0}
-											/>
+										<linearGradient id="connectorGradient" x1="0" y1="0" x2="0" y2="1">
+											<stop offset="0%" stopColor="var(--primary)" stopOpacity={0.08} />
+											<stop offset="100%" stopColor="var(--primary)" stopOpacity={0.0} />
 										</linearGradient>
 									</defs>
 
@@ -157,35 +114,29 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 											if (active && payload && payload.length) {
 												const data = payload[0].payload as ChartDataPoint;
 												return (
-													<div className="flex flex-col items-center select-none pointer-events-none transition-all duration-150 animate-fade-in -translate-x-1/2">
+													<div className="animate-fade-in pointer-events-none flex -translate-x-1/2 flex-col items-center transition-all duration-150 select-none">
 														{/* Floating Pill */}
-														<div className="bg-slate-900/95 text-slate-100 border border-slate-800 rounded-full px-4 py-1.5 shadow-[0_12px_30px_rgba(15,23,42,0.25)] flex items-center gap-2.5 text-[11px] font-medium backdrop-blur-md">
-															<span className="text-white font-bold">
-																{data.semester}
-															</span>
+														<div className="flex items-center gap-2.5 rounded-full border border-slate-800 bg-slate-900/95 px-4 py-1.5 text-[11px] font-medium text-slate-100 shadow-[0_12px_30px_rgba(15,23,42,0.25)] backdrop-blur-md">
+															<span className="font-bold text-white">{data.semester}</span>
 															<span className="h-3 w-[1px] bg-slate-800" />
 															<span className="flex items-center gap-1">
-																<span className="text-slate-400 font-normal">
-																	SGPA:
-																</span>
+																<span className="font-normal text-slate-400">SGPA:</span>
 																<span className="text-primary-foreground font-semibold">
 																	{data.sgpa.toFixed(2)}
 																</span>
 															</span>
 															<span className="h-3 w-[1px] bg-slate-800" />
 															<span className="flex items-center gap-1">
-																<span className="text-slate-400 font-normal">
-																	CGPA:
-																</span>
-																<span className="text-slate-200 font-semibold">
+																<span className="font-normal text-slate-400">CGPA:</span>
+																<span className="font-semibold text-slate-200">
 																	{data.cgpa.toFixed(2)}
 																</span>
 															</span>
 														</div>
 														{/* Hollow pointer dot */}
-														<div className="flex flex-col items-center mt-1.5">
+														<div className="mt-1.5 flex flex-col items-center">
 															<div className="h-2.5 w-[1px] bg-slate-400/50" />
-															<div className="h-2 w-2 rounded-full border border-primary bg-white shadow-[0_0_8px_rgba(59,130,246,0.5)] mt-0.5 animate-pulse" />
+															<div className="border-primary mt-0.5 h-2 w-2 animate-pulse rounded-full border bg-white shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
 														</div>
 													</div>
 												);
@@ -261,14 +212,14 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 					</div>
 
 					{/* Bottom Labels showing Semester numbers S1, S2, etc. and SGPA values */}
-					<div className="flex w-full mt-2.5 select-none justify-between border-t border-slate-100/90 pt-2">
+					<div className="mt-2.5 flex w-full justify-between border-t border-slate-100/90 pt-2 select-none">
 						{chartData.map((item, index) => {
 							const isHovered = hoveredIndex === index;
 							const isLatest = index === chartData.length - 1;
 							return (
 								<div
 									key={item.name}
-									className="flex-1 flex flex-col items-center justify-center text-center px-0.5 transition-all duration-300"
+									className="flex flex-1 flex-col items-center justify-center px-0.5 text-center transition-all duration-300"
 									style={{
 										opacity: hoveredIndex !== null ? (isHovered ? 1 : 0.3) : 1,
 									}}
@@ -279,7 +230,7 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 										{item.name}
 									</span>
 									<span
-										className={`text-xs mt-0.5 font-semibold ${isLatest ? "text-primary font-bold" : "text-slate-600 font-medium"}`}
+										className={`mt-0.5 text-xs font-semibold ${isLatest ? "text-primary font-bold" : "font-medium text-slate-600"}`}
 									>
 										{item.sgpa.toFixed(2)}
 									</span>
@@ -290,74 +241,29 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 				</div>
 			) : (
 				/* No-Data Mock Preview Grid with faint background lines and SVG curves */
-				<div className="relative h-[254px] w-full flex flex-col items-center justify-center border border-slate-100 rounded-2xl bg-slate-50/20 overflow-hidden">
+				<div className="relative flex h-[254px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-slate-100 bg-slate-50/20">
 					{/* Mock Background Grid Lines */}
-					<div className="absolute inset-0 grid grid-cols-6 grid-rows-4 opacity-[0.06] pointer-events-none">
+					<div className="pointer-events-none absolute inset-0 grid grid-cols-6 grid-rows-4 opacity-[0.06]">
 						{Array.from({ length: 24 }).map((_, i) => (
-							<div
-								key={i}
-								className="border-r border-b border-slate-400 border-dashed"
-							/>
+							<div key={i} className="border-r border-b border-dashed border-slate-400" />
 						))}
 					</div>
 
 					{/* Faint Mock Chart Path */}
 					<svg
-						className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none"
+						className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.04]"
 						preserveAspectRatio="none"
 						role="img"
 						aria-label="Decorative Mock Chart Path"
 					>
 						<title>Decorative Mock Chart Path</title>
 						{/* Mock bars */}
-						<rect
-							x="10%"
-							y="60%"
-							width="8%"
-							height="40%"
-							fill="var(--primary)"
-							rx="3"
-						/>
-						<rect
-							x="25%"
-							y="45%"
-							width="8%"
-							height="55%"
-							fill="var(--primary)"
-							rx="3"
-						/>
-						<rect
-							x="40%"
-							y="55%"
-							width="8%"
-							height="45%"
-							fill="var(--primary)"
-							rx="3"
-						/>
-						<rect
-							x="55%"
-							y="30%"
-							width="8%"
-							height="70%"
-							fill="var(--primary)"
-							rx="3"
-						/>
-						<rect
-							x="70%"
-							y="40%"
-							width="8%"
-							height="60%"
-							fill="var(--primary)"
-							rx="3"
-						/>
-						<rect
-							x="85%"
-							y="20%"
-							width="8%"
-							height="80%"
-							fill="var(--primary)"
-							rx="3"
-						/>
+						<rect x="10%" y="60%" width="8%" height="40%" fill="var(--primary)" rx="3" />
+						<rect x="25%" y="45%" width="8%" height="55%" fill="var(--primary)" rx="3" />
+						<rect x="40%" y="55%" width="8%" height="45%" fill="var(--primary)" rx="3" />
+						<rect x="55%" y="30%" width="8%" height="70%" fill="var(--primary)" rx="3" />
+						<rect x="70%" y="40%" width="8%" height="60%" fill="var(--primary)" rx="3" />
+						<rect x="85%" y="20%" width="8%" height="80%" fill="var(--primary)" rx="3" />
 
 						{/* Mock Trend Line */}
 						<path
@@ -377,16 +283,13 @@ export function GPATrendChart({ semesters }: GPATrendChartProps) {
 					</svg>
 
 					{/* Content Call-To-Action */}
-					<div className="relative z-10 flex flex-col items-center justify-center text-center p-6 select-none">
-						<div className="icon-skeuo-raised h-12 w-12 rounded-2xl border border-slate-200/80 shadow-[inset_0_1px_0_#ffffff,0_2px_6px_rgba(0,0,0,0.03)] text-slate-400/90 flex items-center justify-center mb-3">
+					<div className="relative z-10 flex flex-col items-center justify-center p-6 text-center select-none">
+						<div className="icon-skeuo-raised mb-3 flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200/80 text-slate-400/90 shadow-[inset_0_1px_0_#ffffff,0_2px_6px_rgba(0,0,0,0.03)]">
 							<TrendingUp className="h-5 w-5" />
 						</div>
-						<h4 className="text-sm font-normal text-slate-700 mb-1">
-							No Academic Data Yet
-						</h4>
-						<p className="text-xs text-slate-400 max-w-[260px] leading-relaxed font-normal">
-							Add your first semester grades to activate performance tracking &
-							GPA trend analysis.
+						<h4 className="mb-1 text-sm font-normal text-slate-700">No Academic Data Yet</h4>
+						<p className="max-w-[260px] text-xs leading-relaxed font-normal text-slate-400">
+							Add your first semester grades to activate performance tracking & GPA trend analysis.
 						</p>
 					</div>
 				</div>

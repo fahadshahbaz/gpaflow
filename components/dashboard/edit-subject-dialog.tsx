@@ -40,17 +40,13 @@ export function EditSubjectDialog({
 }: EditSubjectDialogProps) {
 	const [name, setName] = useState(subject.name);
 	const [marks, setMarks] = useState(String(subject.obtained_marks));
-	const [totalMarks, setTotalMarks] = useState(
-		String(subject.total_marks ?? 100),
-	);
+	const [totalMarks, setTotalMarks] = useState(String(subject.total_marks ?? 100));
 	const [creditHours, setCreditHours] = useState(String(subject.credit_hours));
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 
 	const engine = getUniversityGradingEngine(university);
-	const showTotalMarks = ["gcwuf", "gcuf_arts", "gcuf_eng"].includes(
-		university,
-	);
+	const showTotalMarks = ["gcwuf", "gcuf_arts", "gcuf_eng"].includes(university);
 	const maxCredits = university === "numl" ? 4 : university === "gcwuf" ? 5 : 6;
 
 	useEffect(() => {
@@ -67,8 +63,7 @@ export function EditSubjectDialog({
 		const creditHoursNum = Number.parseInt(creditHours, 10) || 3;
 
 		if (Number.isNaN(marksNum) || marksNum < 0) return null;
-		if (showTotalMarks && (Number.isNaN(totalMarksNum) || totalMarksNum <= 0))
-			return null;
+		if (showTotalMarks && (Number.isNaN(totalMarksNum) || totalMarksNum <= 0)) return null;
 		if (marksNum > (showTotalMarks ? totalMarksNum : 100)) return null;
 
 		const maxMarks = showTotalMarks ? totalMarksNum : 100;
@@ -89,11 +84,7 @@ export function EditSubjectDialog({
 		};
 	}, [marks, totalMarks, creditHours, engine, showTotalMarks]);
 
-	function handleNumericChange(
-		value: string,
-		setter: (val: string) => void,
-		allowDecimal = true,
-	) {
+	function handleNumericChange(value: string, setter: (val: string) => void, allowDecimal = true) {
 		const filtered = allowDecimal
 			? value.replace(/[^0-9.]/g, "").replace(/(\.)(?=.*\.)/g, "")
 			: value.replace(/[^0-9]/g, "");
@@ -124,11 +115,7 @@ export function EditSubjectDialog({
 			return;
 		}
 
-		if (
-			Number.isNaN(creditHoursNum) ||
-			creditHoursNum < 1 ||
-			creditHoursNum > maxCredits
-		) {
+		if (Number.isNaN(creditHoursNum) || creditHoursNum < 1 || creditHoursNum > maxCredits) {
 			setError(`Credit hours must be between 1 and ${maxCredits}`);
 			return;
 		}
@@ -153,35 +140,31 @@ export function EditSubjectDialog({
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="bg-white border-gray-200 sm:max-w-[480px] rounded-2xl">
+			<DialogContent className="rounded-2xl border-gray-200 bg-white sm:max-w-[480px]">
 				<DialogHeader className="space-y-1">
-					<DialogTitle className="text-lg font-semibold text-gray-900">
-						Edit Subject
-					</DialogTitle>
-					<DialogDescription className="text-gray-500 text-sm">
+					<DialogTitle className="text-lg font-semibold text-gray-900">Edit Subject</DialogTitle>
+					<DialogDescription className="text-sm text-gray-500">
 						Update subject details
 					</DialogDescription>
 				</DialogHeader>
 
 				<form onSubmit={handleSubmit} className="space-y-4 pt-2">
 					<Field>
-						<FieldLabel className="text-gray-600 text-sm font-medium mb-1.5 block">
+						<FieldLabel className="mb-1.5 block text-sm font-medium text-gray-600">
 							Subject Name
 						</FieldLabel>
 						<Input
 							placeholder="e.g. Calculus, Programming Fundamentals"
 							value={name}
 							onChange={(e) => setName(e.target.value)}
-							className="bg-secondary/50 border-input h-10 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl"
+							className="bg-secondary/50 border-input text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 h-10 rounded-xl focus:ring-2"
 							disabled={loading}
 						/>
 					</Field>
 
-					<div
-						className={`grid gap-4 items-end ${showTotalMarks ? "grid-cols-3" : "grid-cols-2"}`}
-					>
+					<div className={`grid items-end gap-4 ${showTotalMarks ? "grid-cols-3" : "grid-cols-2"}`}>
 						<Field>
-							<FieldLabel className="text-gray-600 text-sm font-medium mb-1.5 block">
+							<FieldLabel className="mb-1.5 block text-sm font-medium text-gray-600">
 								Obtained Marks
 							</FieldLabel>
 							<Input
@@ -190,14 +173,14 @@ export function EditSubjectDialog({
 								placeholder={showTotalMarks ? "0" : "0 - 100"}
 								value={marks}
 								onChange={(e) => handleNumericChange(e.target.value, setMarks)}
-								className="bg-gray-50 border-gray-200 h-10 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-xl"
+								className="h-10 rounded-xl border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
 								disabled={loading}
 							/>
 						</Field>
 
 						{showTotalMarks && (
 							<Field>
-								<FieldLabel className="text-gray-600 text-sm font-medium mb-1.5 block">
+								<FieldLabel className="mb-1.5 block text-sm font-medium text-gray-600">
 									Total Marks
 								</FieldLabel>
 								<Input
@@ -205,17 +188,15 @@ export function EditSubjectDialog({
 									inputMode="numeric"
 									placeholder="100"
 									value={totalMarks}
-									onChange={(e) =>
-										handleNumericChange(e.target.value, setTotalMarks, false)
-									}
-									className="bg-gray-50 border-gray-200 h-10 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-xl"
+									onChange={(e) => handleNumericChange(e.target.value, setTotalMarks, false)}
+									className="h-10 rounded-xl border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
 									disabled={loading}
 								/>
 							</Field>
 						)}
 
 						<Field>
-							<FieldLabel className="text-gray-600 text-sm font-medium mb-1.5 block">
+							<FieldLabel className="mb-1.5 block text-sm font-medium text-gray-600">
 								Credit Hours
 							</FieldLabel>
 							<Input
@@ -223,18 +204,16 @@ export function EditSubjectDialog({
 								inputMode="numeric"
 								placeholder={`1 - ${maxCredits}`}
 								value={creditHours}
-								onChange={(e) =>
-									handleNumericChange(e.target.value, setCreditHours, false)
-								}
-								className="bg-gray-50 border-gray-200 h-10 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-xl"
+								onChange={(e) => handleNumericChange(e.target.value, setCreditHours, false)}
+								className="h-10 rounded-xl border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
 								disabled={loading}
 							/>
 						</Field>
 					</div>
 
 					{gradePreview && (
-						<div className="p-3 rounded-xl bg-primary-50 border border-primary-100 animate-in fade-in slide-in-from-top-2 duration-200">
-							<p className="text-xs text-primary uppercase tracking-wider mb-2 font-medium">
+						<div className="bg-primary-50 border-primary-100 animate-in fade-in slide-in-from-top-2 rounded-xl border p-3 duration-200">
+							<p className="text-primary mb-2 text-xs font-medium tracking-wider uppercase">
 								Grade Preview
 							</p>
 							<div className="flex items-center justify-between">
@@ -250,9 +229,7 @@ export function EditSubjectDialog({
 									</div>
 								</div>
 								<div className="text-right">
-									<p className="text-base font-medium text-gray-700">
-										{gradePreview.percentage}%
-									</p>
+									<p className="text-base font-medium text-gray-700">{gradePreview.percentage}%</p>
 									<p className="text-xs text-gray-500">Percentage</p>
 								</div>
 							</div>
@@ -261,9 +238,7 @@ export function EditSubjectDialog({
 
 					{error && (
 						<div className="animate-in fade-in slide-in-from-top-1 duration-150">
-							<FieldError className="text-destructive text-sm">
-								{error}
-							</FieldError>
+							<FieldError className="text-destructive text-sm">{error}</FieldError>
 						</div>
 					)}
 
@@ -273,7 +248,7 @@ export function EditSubjectDialog({
 							variant="skeuoWhite"
 							onClick={() => onOpenChange(false)}
 							disabled={loading}
-							className="h-9 px-4 rounded-xl text-xs font-bold cursor-pointer"
+							className="h-9 cursor-pointer rounded-xl px-4 text-xs font-bold"
 						>
 							Cancel
 						</Button>
@@ -281,11 +256,11 @@ export function EditSubjectDialog({
 							type="submit"
 							variant="skeuoPrimary"
 							disabled={loading || !name.trim() || !marks || !creditHours}
-							className="h-9 px-4 rounded-xl text-xs font-extrabold cursor-pointer disabled:opacity-50"
+							className="h-9 cursor-pointer rounded-xl px-4 text-xs font-extrabold disabled:opacity-50"
 						>
 							{loading ? (
 								<span className="flex items-center gap-2">
-									<span className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+									<span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
 									Saving...
 								</span>
 							) : (
