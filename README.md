@@ -1,42 +1,44 @@
 <div align="center">
-  <img src="public/favicon.png" alt="GPAFlow logo" width="80" height="80" />
-  <h1>GPAFlow</h1>
-  <p>A high-performance, persistent academic dashboard built to track, calculate, and forecast your academic journey over 4 years.</p>
+  <img src="public/favicon.png" alt="GPAFlow" width="96" height="96" />
+
+  # GPAFlow
+
+  **Track, calculate, and forecast your GPA over four years**
+
+  Persistent academic dashboard built with Next.js, React 19, and Supabase.
 </div>
 
-<br />
-
 ## Why GPAFlow?
-Most GPA calculators are "one-and-done." You enter marks, get a result, and it's gone. GPAFlow is different it's your long-term academic companion.
 
-- **Track Trends:** Visualize your SGPA/CGPA progress across 8 semesters with interactive charts.
-- **Smart Predictions:** Know exactly what grades you need in the next semester to hit your target CGPA.
-- **Persistent Data:** Your records are synced and secured via Supabase, accessible anytime, anywhere.
-- **Modern UI:** Built with glassmorphism, fluid native CSS transitions, and a mobile-first philosophy.
+Most GPA calculators are one-and-done: you enter marks, get a number, and lose it. GPAFlow is built as a long-term academic companion across an entire 4-year degree:
 
-## Tech Stack
-We use the latest tools to ensure the dashboard is fast and reliable:
-- **Core:** Next.js (App Router) + React 19
-- **Database:** Supabase (PostgreSQL)
-- **Styling:** Tailwind CSS v4
-- **Animations:** Native CSS & Tailwind CSS v4
-- **Tooling:** BiomeJS (Linting/Formatting)
-
-## Getting Started
-
-Want to run it locally or contribute? Check out the [Contributing Guide](CONTRIBUTING.md) for full setup instructions.
+- **Track Trends:** Visualize SGPA and CGPA across 8 semesters with interactive charts.
+- **Smart Predictions:** Calculate the exact grades needed next semester to hit your target CGPA.
+- **Persistent Data:** Academic records are synced and secured via Supabase across devices.
+- **Modern UI:** Built with glassmorphism, fluid CSS transitions, and a mobile-first layout.
 
 ## Supported Universities
 
-GPAFlow uses a flexible **Strategy Pattern** for grading - each university has its own grading engine that plugs in seamlessly.
+GPAFlow uses a **Strategy Pattern** for grading so each university plugs in its own grading rules cleanly:
 
 | University | Grading System | Status |
-|-----------|---------------|--------|
-| **NUML** - National University of Modern Languages | Letter grades with 4.0 GPA scale | ✅ Supported |
-| **GCWUF** - GC University for Women Faisalabad | Quality points table system | ✅ Supported |
-| **GCUF (Arts)** - GC University Faisalabad | General & arts, ceil rounding | ✅ Supported |
-| **GCUF (Engineering)** - GC University Faisalabad | Engineering, 55% pass limit | ✅ Supported |
+| :--- | :--- | :--- |
+| **NUML** - National University of Modern Languages | Letter grades with 4.0 GPA scale | Supported |
+| **GCWUF** - GC University for Women Faisalabad | Quality points table system | Supported |
+| **GCUF (Arts)** - GC University Faisalabad | General & arts, ceil rounding | Supported |
+| **GCUF (Engineering)** - GC University Faisalabad | Engineering, 55% pass limit | Supported |
 
-> 🎓 **Your university not listed?** We're actively looking for contributors to add support for more universities! Check the [Contributing Guide](CONTRIBUTING.md) for details.
+> **Your university not listed?** Check [CONTRIBUTING.md](CONTRIBUTING.md) to add a new grading engine.
 
-Made with 🎓 by [Fahad Shahbaz](https://fahadshahbaz.dev)
+## Tech Stack
+
+- **Core:** Next.js 16 (App Router), React 19, TypeScript
+- **Database & Auth:** Supabase (PostgreSQL)
+- **Styling:** Tailwind CSS v4
+- **Tooling:** Oxlint, Oxfmt, pnpm
+
+## Getting Started
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for environment variables, local setup, and contribution guidelines.
+
+Built by [Fahad Shahbaz](https://fahadshahbaz.dev)
